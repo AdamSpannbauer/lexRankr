@@ -1,0 +1,11 @@
+Package: lexRankr
+Type: Package
+Title: Extractive Summarization of Text With the LexRank Algorithm
+Version: 0.1.0
+Author: Adam Spannbauer <spannbaueradam@gmail.com>
+Maintainer: Adam Spannbauer <spannbaueradam@gmail.com>
+Description: An R implementation of the LexRank algorithm described by Erkan & Radev in "LexRank: Graph-based Lexical Centrality as Salience in Text Summarization."
+License: MIT + file LICENSE
+LazyData: TRUE
+RoxygenNote: 5.0.1
+Imports: dplyr, tidyr, magrittr, stringr, SnowballC, igraph, proxy, tm
