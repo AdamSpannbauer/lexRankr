@@ -6,7 +6,7 @@ lexRankr is an R implementation of the LexRank algorithm discussed by Güneş Er
 There are currently 7 functions in the package.  The main function is `lexRank()` with the remaining 6 functions serving as helpers to this function (or as a means for the user to build step by step to the output of `lexRank()`).
 
 ##Examples
-  ###lexRank
+####lexRank
   ```
   library(lexRankr)
   library(magrittr)
@@ -27,7 +27,7 @@ There are currently 7 functions in the package.  The main function is `lexRank()
   
   (topSentsDf <- lexRank(docs))
   ```
-  ###Using helper functions for lexRank
+####Using helper functions for lexRank
   ```
   library(lexRankr)
   library(magrittr)
