@@ -5,9 +5,10 @@
 \title{Extractive text summarization with LexRank}
 \usage{
 lexRank(text, docId = "create", threshold = 0.2, n = 3,
-  returnTies = TRUE, usePageRank = TRUE, continuous = FALSE,
-  sentencesAsDocs = FALSE, removePunc = TRUE, removeNum = TRUE,
-  toLower = TRUE, stemWords = TRUE, rmStopWords = TRUE, Verbose = TRUE)
+  returnTies = TRUE, usePageRank = TRUE, damping = 0.85,
+  continuous = FALSE, sentencesAsDocs = FALSE, removePunc = TRUE,
+  removeNum = TRUE, toLower = TRUE, stemWords = TRUE,
+  rmStopWords = TRUE, Verbose = TRUE)
 }
 \arguments{
 \item{text}{A character vector of documents to be cleaned and processed by the LexRank algorithm}
@@ -21,6 +22,8 @@ lexRank(text, docId = "create", threshold = 0.2, n = 3,
 \item{returnTies}{\code{TRUE} or \code{FALSE} indicating whether or not to return greater than \code{n} sentence IDs if there is a tie in lexRank.  If \code{TRUE}, the returned number of sentences will not be limited to \code{n}, but rather will return every sentece with a top 3 score.  If \code{FALSE}, the returned number of sentences will be \code{<=n}. Defaults to \code{TRUE}.}
 
 \item{usePageRank}{\code{TRUE} or \code{FALSE} indicating whether or not to use the page rank algorithm for ranking sentences.  If \code{FALSE}, a sentences unweighted centrality will be used as the rank.  Defaults to \code{TRUE}.}
+
+\item{damping}{The damping factor to be passed to page rank algorithm.  Ignored if \code{usePageRank} is \code{FALSE}.}
 
 \item{continuous}{\code{TRUE} or \code{FALSE} indicating whether or not to use continuous LexRank.  Only applies if \code{usePageRank==TRUE}.  If \code{TRUE}, \code{threshold} will be ignored and lexRank will be computed using a weighted graph representation of the sentences. Defaults to \code{FALSE}.}
 

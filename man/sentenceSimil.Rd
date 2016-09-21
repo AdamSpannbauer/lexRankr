@@ -23,8 +23,8 @@ Compute distance between sentences using modified idf cosine distance from "LexR
 }
 \examples{
 sentenceSimil(docId=c("d1","d1","d2","d2"),
-              sentenceId=c("d1_1","d1_1","d2_1","d2_1"),
-              token=c("i", "ran", "jane", "ran"))
+               sentenceId=c("d1_1","d1_1","d2_1","d2_1"),
+               token=c("i", "ran", "jane", "ran"))
 }
 \references{
 \url{http://www.cs.cmu.edu/afs/cs/project/jair/pub/volume22/erkan04a-html/erkan04a.html}
