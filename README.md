@@ -19,7 +19,6 @@ There are currently 7 functions in the package.  The main function is `lexRank()
 ####lexRank
   ```
   library(lexRankr)
-  library(magrittr)
   
   #note1: the lexrank algorithm is designed to work on a cluster of documents.
           #LexRank is built on the idea that a cluster of docs will focus on similar topics.
@@ -32,7 +31,6 @@ There are currently 7 functions in the package.  The main function is `lexRank()
 ####Using helper functions for lexRank
   ```
   library(lexRankr)
-  library(magrittr)
       
   #note1: the lexrank algorithm is designed to work on a cluster of documents.
           #LexRank is built on the idea that a cluster of docs will focus on similar topics.
@@ -52,7 +50,6 @@ There are currently 7 functions in the package.  The main function is `lexRank()
   
 ##Example with Twitter
     ```
-    library(dplyr)
     library(jsonlite)
     library(httr)
     
