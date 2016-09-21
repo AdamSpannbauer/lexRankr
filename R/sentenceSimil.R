@@ -74,9 +74,14 @@ sentenceSimil <- function(sentenceId, token, docId=NULL, sentencesAsDocs=FALSE){
   idfCosine <- function(x,y) {
     sum(x*y)/(sqrt(sum(x^2))*sqrt(sum(y^2)))
   }
-  proxy::pr_DB$set_entry(FUN=idfCosine, names="idfCosine")
-  similMat <- proxy::dist(stm, method="idfCosine")
-  proxy::pr_DB$delete_entry("idfCosine")
+  prDBname <- "idfCosine"
+  while (proxy::pr_DB$entry_exists(prDBname)) {
+    prDBname <- paste0(prDBname, sample(100:999,1))
+    cat(prDBname,"\n")
+  }
+  proxy::pr_DB$set_entry(FUN=idfCosine, names=prDBname)
+  similMat <- proxy::dist(stm, method=prDBname)
+  proxy::pr_DB$delete_entry(prDBname)
 
   sentencePairsDf <- sort(rownames(stm)) %>%
     combn(2) %>%
