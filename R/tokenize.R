@@ -38,7 +38,7 @@ tokenize <- function(text, removePunc=TRUE, removeNum=TRUE, toLower=TRUE, stemWo
     }
   }
 
-  if (removePunc) text <- gsub(x=text,pattern="([[:punct:]])",replacement="")
+  if (removePunc) text <- gsub(x=text,pattern="[^[:alnum:] ]",replacement="")
   if (removeNum) text <- gsub(x=text,pattern="([[:digit:]])",replacement="")
   if (toLower) text <- tolower(text)
 
