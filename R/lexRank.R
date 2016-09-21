@@ -8,6 +8,7 @@ utils::globalVariables(c("value"))
 #' @param n The number of sentences to return as the extractive summary.  The function will return the top \code{n} lexRanked sentences.  See \code{returnTies} for handling ties in lexRank.
 #' @param returnTies \code{TRUE} or \code{FALSE} indicating whether or not to return greater than \code{n} sentence IDs if there is a tie in lexRank.  If \code{TRUE}, the returned number of sentences will not be limited to \code{n}, but rather will return every sentece with a top 3 score.  If \code{FALSE}, the returned number of sentences will be \code{<=n}. Defaults to \code{TRUE}.
 #' @param usePageRank \code{TRUE} or \code{FALSE} indicating whether or not to use the page rank algorithm for ranking sentences.  If \code{FALSE}, a sentences unweighted centrality will be used as the rank.  Defaults to \code{TRUE}.
+#' @param damping The damping factor to be passed to page rank algorithm.  Ignored if \code{usePageRank} is \code{FALSE}.
 #' @param continuous \code{TRUE} or \code{FALSE} indicating whether or not to use continuous LexRank.  Only applies if \code{usePageRank==TRUE}.  If \code{TRUE}, \code{threshold} will be ignored and lexRank will be computed using a weighted graph representation of the sentences. Defaults to \code{FALSE}.
 #' @param sentencesAsDocs \code{TRUE} or \code{FALSE}, indicating whether or not to treat sentences as documents when calculating tfidf scores for similarity. If \code{TRUE}, inverse document frequency will be calculated as inverse sentence frequency (useful for single document extractive summarization).
 #' @param removePunc \code{TRUE} or \code{FALSE} indicating whether or not to remove punctuation from text while tokenizing.  If \code{TRUE}, puncuation will be removed.  Defaults to \code{TRUE}.
@@ -26,7 +27,7 @@ utils::globalVariables(c("value"))
 #' @importFrom magrittr "%>%"
 
 #' @export
-lexRank <- function(text, docId = "create", threshold=.2, n=3, returnTies=TRUE, usePageRank=TRUE, continuous=FALSE, sentencesAsDocs=FALSE, removePunc=TRUE, removeNum=TRUE, toLower=TRUE, stemWords=TRUE, rmStopWords=TRUE, Verbose=TRUE){
+lexRank <- function(text, docId = "create", threshold=.2, n=3, returnTies=TRUE, usePageRank=TRUE, damping=0.85, continuous=FALSE, sentencesAsDocs=FALSE, removePunc=TRUE, removeNum=TRUE, toLower=TRUE, stemWords=TRUE, rmStopWords=TRUE, Verbose=TRUE){
 
   if(!is.logical(Verbose)) stop("Verbose must be logical")
   if(length(Verbose) != 1) stop("Verbose must be length 1")
@@ -42,7 +43,7 @@ lexRank <- function(text, docId = "create", threshold=.2, n=3, returnTies=TRUE, 
   if(Verbose) cat("DONE\n")
 
   if(Verbose) cat("Applying LexRank...")
-  topNSents <- lexRankFromSimil(s1=similDf$sent1, s2=similDf$sent2, simil=similDf$similVal, threshold=threshold, n=n, returnTies=returnTies, usePageRank=usePageRank, continuous=continuous)
+  topNSents <- lexRankFromSimil(s1=similDf$sent1, s2=similDf$sent2, simil=similDf$similVal, threshold=threshold, n=n, returnTies=returnTies, usePageRank=usePageRank, damping=damping, continuous=continuous)
   if(Verbose) cat("DONE\nFormatting Output...")
   returnDf <- sentDf %>%
     dplyr::inner_join(topNSents, by=c("sentenceId"="sentenceId")) %>%
