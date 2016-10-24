@@ -1,3 +1,7 @@
+#' @useDynLib lexRankr
+#' @importFrom Rcpp sourceCpp
+NULL
+
 utils::globalVariables(c("n","tf","idf","tfidf","V1","V2","similVal"))
 #' Compute distance between sentences
 
@@ -71,23 +75,25 @@ sentenceSimil <- function(sentenceId, token, docId=NULL, sentencesAsDocs=FALSE){
     as.matrix()
   rownames(stm) <- matRowNames
 
-  idfCosine <- function(x,y) {
-    sum(x*y)/(sqrt(sum(x^2))*sqrt(sum(y^2)))
-  }
-  prDBname <- "idfCosine"
-  while (proxy::pr_DB$entry_exists(prDBname)) {
-    prDBname <- paste0(prDBname, sample(100:999,1))
-    cat(prDBname,"\n")
-  }
-  proxy::pr_DB$set_entry(FUN=idfCosine, names=prDBname)
-  similMat <- proxy::dist(stm, method=prDBname)
-  proxy::pr_DB$delete_entry(prDBname)
+  #old non C slow version for idfcosine similarity
+  # idfCosine <- function(x,y) {
+  #   sum(x*y)/(sqrt(sum(x^2))*sqrt(sum(y^2)))
+  # }
+  # prDBname <- "idfCosine"
+  # while (proxy::pr_DB$entry_exists(prDBname)) {
+  #   prDBname <- paste0(prDBname, sample(100:999,1))
+  #   cat(prDBname,"\n")
+  # }
+  # proxy::pr_DB$set_entry(FUN=idfCosine, names=prDBname)
+  # similMat <- proxy::dist(stm, method=prDBname)
+  # proxy::pr_DB$delete_entry(prDBname)
 
   sentencePairsDf <- sort(rownames(stm)) %>%
     combn(2) %>%
     t() %>%
     as.data.frame(stringsAsFactors=FALSE) %>%
-    dplyr::mutate(similVal = as.numeric(similMat)) %>%
+    dplyr::mutate(similVal = idfCosineSimil(stm)) %>%
+    # dplyr::mutate(similVal = as.numeric(similMat)) %>%
     dplyr::select(sent1=V1, sent2=V2, similVal)
   class(sentencePairsDf) <- "data.frame"
 
