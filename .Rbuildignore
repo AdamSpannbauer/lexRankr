@@ -2,3 +2,4 @@
 ^\.Rproj\.user$
 ^\.httr-oauth$
 ^appveyor\.yml$
+^\.travis\.yml$
