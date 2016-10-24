@@ -4,7 +4,7 @@
 
 ##Installation
     
-    #install from CRAN
+    ##install from CRAN
     install.packages("lexRankr")
     
     #install from this github repo
