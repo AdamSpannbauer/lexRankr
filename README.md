@@ -1,4 +1,7 @@
 # lexRankr: Extractive Text Summariztion in R
+====
+
+[![Build Status](https://travis-ci.org/AdamSpannbauer/lexRankr.svg?branch=master)](https://travis-ci.org/AdamSpannbauer/lexRankr)
 
 ##Installation
     
