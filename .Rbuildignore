@@ -3,3 +3,4 @@
 ^\.httr-oauth$
 ^appveyor\.yml$
 ^\.travis\.yml$
+^codecov\.yml$
