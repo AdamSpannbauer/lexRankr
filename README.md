@@ -1,6 +1,6 @@
 # lexRankr: Extractive Text Summariztion in R
 
-[![Build Status](https://travis-ci.org/AdamSpannbauer/lexRankr.svg?branch=master)](https://travis-ci.org/AdamSpannbauer/lexRankr) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/AdamSpannbauer/lexRankr?branch=master&svg=true)](https://ci.appveyor.com/project/AdamSpannbauer/lexRankr) [![Coverage Status](https://img.shields.io/codecov/c/github/AdamSpannbauer/lexRankr/master.svg)](https://codecov.io/github/AdamSpannbauer/lexRankr?branch=master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/lexRankr)](https://CRAN.R-project.org/package=lexRankr) 
+[![Build Status](https://travis-ci.org/AdamSpannbauer/lexRankr.svg?branch=master)](https://travis-ci.org/AdamSpannbauer/lexRankr) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/AdamSpannbauer/lexRankr?branch=master&svg=true)](https://ci.appveyor.com/project/AdamSpannbauer/lexRankr) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/lexRankr)](https://CRAN.R-project.org/package=lexRankr) 
 
 ##Installation
     
