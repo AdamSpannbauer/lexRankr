@@ -24,7 +24,7 @@ sentenceParse <- function(text, docId = "create") {
 
   sentences <- stringr::str_split(string = text, pattern = stringr::regex("(?<!\\w\\.\\w.)(?<![A-Z][a-z]\\.)(?<=\\.|\\?)\\s"))
   sentenceDfList <- lapply(seq_along(sentences), function(i) {
-    sentVec <- sentences[[i]]
+    sentVec <- trimws(sentences[[i]])
     if(createDocIds) {
       data.frame(docId=i, sentenceId=paste0(i,"_",seq_along(sentVec)), sentence=sentVec, stringsAsFactors = FALSE)
     } else if(!createDocIds) {
