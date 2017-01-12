@@ -15,7 +15,7 @@ test_that("object class and structure check", {
   expect_true(is.character(testResult$tokens$sentence))
 })
 
-# test and arg option variations ------------------------------
+# test output value -------------------------------------------
 
 test_that("All clean options TRUE", {
   testDocs <- c("Testing 1, 2, 3.", "Is everything working as expected Mr. Wickham?")
