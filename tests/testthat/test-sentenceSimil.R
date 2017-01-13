@@ -44,7 +44,27 @@ test_that("bad input", {
                              docId = tokenDf$docId))
 })
 
+# test output value ---------------------------------------
 
+test_that("output value check", {
+  testDocs <- c("Testing 1, 2, 3.", 
+                "Is everything working as expected in my test?",
+                "Is it working?")
+  tokenDf <- sentenceTokenParse(testDocs)$tokens
+  
+  testResult <- sentenceSimil(sentenceId = tokenDf$sentenceId,
+                              token = tokenDf$token,
+                              docId = tokenDf$docId) %>% 
+    dplyr::mutate(similVal = round(similVal, 5))
+  
+  expectedResult <- data.frame(sent1 = c("1_1", "1_1", "2_1"),
+                               sent2 = c("2_1", "3_1", "3_1"),
+                               similVal = c(0.32718, 0, 0.32718),
+                               stringsAsFactors = FALSE)
+  
+  expect_equal(testResult, expectedResult)
+  
+})
 
 
 
