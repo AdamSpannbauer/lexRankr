@@ -64,7 +64,7 @@ sentenceSimil <- function(sentenceId, token, docId=NULL, sentencesAsDocs=FALSE){
   }
 
   if(nrow(stm)==0) stop("All values in sentence term tfidf matrix are 0.  Similarities would return as NaN")
-  if(nrow(stm) == 1) stop("Only one sentence had nonzero tfidf scores.  Similarities would return as NaN")
+  if(length(unique((stm$sentenceId))) == 1) stop("Only one sentence had nonzero tfidf scores.  Similarities would return as NaN")
 
   stm <- tidyr::spread(stm, key=token, value=tfidf, fill=0, drop=FALSE)
 
