@@ -66,4 +66,13 @@ test_that("object out value", {
                                stringsAsFactors = FALSE)
   
   expect_identical(testResult, expectedResult)
+  
+  testResult <- lexRankFromSimil(similDf$sent1, similDf$sent2, similDf$similVal, usePageRank = FALSE) %>% 
+    dplyr::mutate(value = round(value, 5))
+  
+  expectedResult <- data.frame(sentenceId = c("2_1", "1_1", "3_1"),
+                               value = c(2, 1, 1),
+                               stringsAsFactors = FALSE)
+  
+  expect_identical(testResult, expectedResult)
 })
