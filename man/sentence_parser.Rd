@@ -15,4 +15,3 @@ A list with length equal to `length(text)`; list elements are character vectors 
 \description{
 Utility to parse sentences from text; created to have a central shared sentence parsing function
 }
-

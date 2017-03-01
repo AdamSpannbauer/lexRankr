@@ -55,4 +55,3 @@ lexRank(c("This is a test.","Tests are fun.",
 \references{
 \url{http://www.cs.cmu.edu/afs/cs/project/jair/pub/volume22/erkan04a-html/erkan04a.html}
 }
-
