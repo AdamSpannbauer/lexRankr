@@ -1,3 +1,8 @@
+# lexRankr 0.4.0
+
+* added functions `unnest_sentences` and `unnest_sentences_` to parse sentences in a dataframe  following tidy data principles
+* added functions `bind_lexrank` and `bind_lexrank_` to calculate lexrank scores for sentences in a dataframe following tidy data principles (`unnest_sentences` & `bind_lexrank` can be used on a df in a magrittr pipeline)
+
 # lexRankr 0.3.0
 
 * sentence similarity from `sentenceSimil` now calculated using Rcpp.  Improves speed by ~25%-30% over old implementation using `proxy` package
