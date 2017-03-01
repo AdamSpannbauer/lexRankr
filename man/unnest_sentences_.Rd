@@ -33,6 +33,7 @@ df <- dplyr::tibble(doc_id = 1:3,
                     text = c("Testing the system. Second sentence for you.", 
                              "System testing the tidy documents df.", 
                              "Documents will be parsed and tagged."))
+
 unnest_sentences(df, sents, text)
 unnest_sentences_(df, "sents", "text")
 

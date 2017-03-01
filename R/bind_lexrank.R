@@ -1,6 +1,6 @@
-#' Split a column of text into sentences
+#' Bind lexrank scores to a dataframe of sentences
 
-#' @description Split a column of text into sentences
+#' @description Bind lexrank scores to a dataframe of sentences
 #' @param tbl dataframe containing column of sentences to be lexranked
 #' @param sentence name of column containing sentences to be lexranked
 #' @param doc_id name of column containing document ids corresponding to the sentences column
@@ -10,7 +10,7 @@
 #' @param damping The damping factor to be passed to page rank algorithm.  Ignored if \code{usePageRank} is \code{FALSE}.
 #' @param continuous \code{TRUE} or \code{FALSE} indicating whether or not to use continuous LexRank.  Only applies if \code{usePageRank==TRUE}.  If \code{TRUE}, \code{threshold} will be ignored and lexRank will be computed using a weighted graph representation of the sentences. Defaults to \code{FALSE}.
 #' @param ... tokenizing options to be passed to lexRankr::tokenize 
-#' @return A data.frame with an additional column of lexrank scores (column is given name lexrank)
+#' @return A dataframe with an additional column of lexrank scores (column is given name lexrank)
 #' @examples
 #' library(dplyr)
 #' 
@@ -55,7 +55,7 @@ bind_lexrank_ <- function(tbl, sentence, doc_id, sent_id, threshold=.2, usePageR
   topSentIdsDf <- lexRankFromSimil(similDf$sent1, similDf$sent2, similDf$similVal, threshold=threshold, n=Inf, returnTies=TRUE, usePageRank=usePageRank, damping=damping, continuous=continuous)
   lex_lookup <- stringr::str_split_fixed(topSentIdsDf$sentenceId, "___lex___", n=2) %>% 
     dplyr::as_data_frame() %>% 
-    setNames(c(doc_id, sent_id))
+    stats::setNames(c(doc_id, sent_id))
   class(lex_lookup[[doc_id]])  <- doc_id_class
   class(lex_lookup[[sent_id]]) <- sent_id_class
   lex_lookup$lexrank <- topSentIdsDf$value
@@ -74,13 +74,3 @@ bind_lexrank <- function(tbl, sentence, doc_id, sent_id, threshold=.2, usePageRa
   
   bind_lexrank_(tbl, sentence_str, doc_id_str, sent_id_str, threshold=threshold, usePageRank=usePageRank, damping=damping, continuous=continuous, ...)
 }
-
-df %>% 
-  unnest_sentences(sents, text) %>% 
-  bind_lexrank_("sents", "doc_id", "sent_id") %>% 
-  as_data_frame()
-
-df %>% 
-  unnest_sentences(sents, text) %>% 
-  bind_lexrank(sents, doc_id, sent_id) %>% 
-  as_data_frame()
