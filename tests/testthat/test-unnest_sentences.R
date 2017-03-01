@@ -5,7 +5,7 @@ test_that("correct ouput class and str", {
   df <- data.frame(doc_id = 1:3, 
                    text = c("Testing the system. Second sentence for you.", 
                             "System testing the tidy documents df.", 
-                            "Documents will be parsed and tagged."),
+                            "Documents will be parsed and lexranked."),
                    stringsAsFactors = FALSE)
   
   test_result <- unnest_sentences(df, out, text)
@@ -25,7 +25,7 @@ test_that("test input checking", {
   df <- data.frame(doc_id = 1:3, 
                    text = c("Testing the system. Second sentence for you.", 
                             "System testing the tidy documents df.", 
-                            "Documents will be parsed and tagged."),
+                            "Documents will be parsed and lexranked."),
                    stringsAsFactors = FALSE)
   
   expect_error(unnest_sentences(df, out, fake))
@@ -38,7 +38,7 @@ test_that("output value", {
   df <- data.frame(doc_id = 1:3, 
                    text = c("Testing the system. Second sentence for you.", 
                             "System testing the tidy documents df.", 
-                            "Documents will be parsed and tagged."),
+                            "Documents will be parsed and lexranked."),
                    stringsAsFactors = FALSE)
   
   test_result     <- unnest_sentences(df, out, text)
@@ -47,7 +47,7 @@ test_that("output value", {
                                 out = c("Testing the system.", 
                                         "Second sentence for you.", 
                                         "System testing the tidy documents df.", 
-                                        "Documents will be parsed and tagged."),
+                                        "Documents will be parsed and lexranked."),
                                 stringsAsFactors = FALSE)
   
   expect_equal(test_result, expected_result)

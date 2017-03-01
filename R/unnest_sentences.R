@@ -13,7 +13,7 @@
 #' df <- dplyr::tibble(doc_id = 1:3, 
 #'                     text = c("Testing the system. Second sentence for you.", 
 #'                              "System testing the tidy documents df.", 
-#'                              "Documents will be parsed and tagged."))
+#'                              "Documents will be parsed and lexranked."))
 #'
 #' unnest_sentences(df, sents, text)
 #' unnest_sentences_(df, "sents", "text")
@@ -33,7 +33,7 @@ unnest_sentences_ <- function(tbl, output, input, output_id="sent_id", drop=TRUE
   if(!is.logical(drop)) stop("drop must be logical")
   
   text <- tbl[[input]]
-  parsed_sents <- stringr::str_split(string = text, pattern = stringr::regex("(?<!\\w\\.\\w.)(?<![A-Z][a-z]\\.)(?<=\\.|\\?)\\s"))
+  parsed_sents <- sentence_parser(text)
   sent_ids     <- lapply(parsed_sents, function(.x) 1:length(.x))
   
   if (drop) {

@@ -22,7 +22,7 @@ sentenceParse <- function(text, docId = "create") {
     } else if(length(docId)!=length(text)) stop("docId vector must be same length as text vector")
 
 
-  sentences <- stringr::str_split(string = text, pattern = stringr::regex("(?<!\\w\\.\\w.)(?<![A-Z][a-z]\\.)(?<=\\.|\\?)\\s"))
+  sentences <- sentence_parser(text)
   sentenceDfList <- lapply(seq_along(sentences), function(i) {
     sentVec <- trimws(sentences[[i]])
     if(createDocIds) {
