@@ -2,6 +2,7 @@
 
 * added functions `unnest_sentences` and `unnest_sentences_` to parse sentences in a dataframe  following tidy data principles
 * added functions `bind_lexrank` and `bind_lexrank_` to calculate lexrank scores for sentences in a dataframe following tidy data principles (`unnest_sentences` & `bind_lexrank` can be used on a df in a magrittr pipeline)
+* added vignette for using lexrank to analyze tweets
 
 # lexRankr 0.3.0
 
