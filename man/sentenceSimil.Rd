@@ -29,3 +29,4 @@ sentenceSimil(docId=c("d1","d1","d2","d2"),
 \references{
 \url{http://www.cs.cmu.edu/afs/cs/project/jair/pub/volume22/erkan04a-html/erkan04a.html}
 }
+
