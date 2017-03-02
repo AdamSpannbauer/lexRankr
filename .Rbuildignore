@@ -5,3 +5,5 @@
 ^\.travis\.yml$
 ^codecov\.yml$
 cran-comments.md
+^.gitignore
+^.httr-oauth
