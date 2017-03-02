@@ -2,7 +2,7 @@
 
 * local Windows 7 x64, R 3.3.2
 * win-builder (devel and release)
-* travis-ci (build passing)
+* travis-ci (build passing for r release and devel)
 * appveyor (build passing)
 
 ## R CMD check results
