@@ -46,7 +46,12 @@ lexRankr is an R implementation of the LexRank algorithm discussed by Güneş Er
     lexRank(text)
   ```
   
-##Example with Twitter (using lexRank helper functions)
+##Examples with Twitter
+
+### Using lexRankr in tidy frame work
+[See Vignette](https://cran.r-project.org/web/packages/lexRankr/vignettes/Analyzing_Twitter_with_LexRankr.html)
+
+### Using lexRankr's helper functions
     ```
     library(jsonlite)
     library(httr)
