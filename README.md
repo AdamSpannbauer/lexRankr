@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/AdamSpannbauer/lexRankr.svg?branch=master)](https://travis-ci.org/AdamSpannbauer/lexRankr) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/AdamSpannbauer/lexRankr?branch=master&svg=true)](https://ci.appveyor.com/project/AdamSpannbauer/lexRankr)  [![Coverage Status](https://img.shields.io/codecov/c/github/AdamSpannbauer/lexRankr/master.svg)](https://codecov.io/github/AdamSpannbauer/lexRankr?branch=master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/lexRankr)](https://CRAN.R-project.org/package=lexRankr) ![](http://cranlogs.r-pkg.org/badges/lexRankr)
 
-##Installation
+## Installation
     
     ##install from CRAN
     install.packages("lexRankr")
@@ -12,15 +12,15 @@
     
 
 
-##Overview
+## Overview
 lexRankr is an R implementation of the LexRank algorithm discussed by Güneş Erkan & Dragomir R. Radev in [LexRank: Graph-based Lexical Centrality as Salience in Text Summarization](http://www.cs.cmu.edu/afs/cs/project/jair/pub/volume22/erkan04a-html/erkan04a.html).  LexRank is designed to summarize a cluster of documents by proposing which sentences subsume the most information in that particular set of documents.  The algorithm may not perform well on a set of unclustered/unrelated set of documents.  As the white paper's title suggests, the sentences are ranked based on their centrality in a graph.  The graph is built upon the pairwise similarities of the sentences (where similarity is measured with a modified idf cosine similiarity function).  The paper describes multiple ways to calculate centrality and these options are available in the R package.  The sentences can be ranked according to their degree of centrality or by using the Page Rank algorithm (both of these methods require setting a minimum similarity threshold for a sentence pair to be included in the graph).  A third variation is Continuous LexRank which does not require a minimum similarity threshold, but rather uses a weighted graph of sentences as the input to Page Rank.
 
 *note: the lexrank algorithm is designed to work on a cluster of documents. LexRank is built on the idea that a cluster of docs will focus on similar topics*
 
 *note: pairwise sentence similiarity is calculated for the entire set of documents passed to the function.  This can be a computationally instensive process (esp with a large set of documents)*
 
-##Basic Usage
-####lexRank in a tidy framework
+## Basic Usage
+#### lexRank in a tidy framework
   ```
   library(lexRankr)
   library(dplyr)
@@ -35,7 +35,7 @@ lexRankr is an R implementation of the LexRank algorithm discussed by Güneş Er
       bind_lexrank(sents, doc_id, level = 'sentences') %>% 
       arrange(desc(lexrank))
   ```
-####lexRank applied to a charcter vector of documents
+#### lexRank applied to a charcter vector of documents
   ```
     library(lexRankr)
 
@@ -46,13 +46,13 @@ lexRankr is an R implementation of the LexRank algorithm discussed by Güneş Er
     lexRank(text)
   ```
   
-##Examples with Twitter
+## Examples with Twitter
 
 ### Using lexRankr in tidy frame work
 [See Vignette](https://cran.r-project.org/web/packages/lexRankr/vignettes/Analyzing_Twitter_with_LexRankr.html)
 
 ### Using lexRankr's helper functions
-    ```
+    
     library(jsonlite)
     library(httr)
     
@@ -153,7 +153,7 @@ lexRankr is an R implementation of the LexRank algorithm discussed by Güneş Er
     ###################
     tweetTextHill <- getUserTweets(user="HillaryClinton", n=5000, consKey, consSecret, token, tokenSecret)
     topTweetsHill <- tweetRankr(tweetTextHill)
-    ```
+    
     
 1) "Hillary Clinton must become the next president of the United States. @BernieSanders #DemsInPhilly
 
