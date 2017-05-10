@@ -49,7 +49,7 @@ lexRankr is an R implementation of the LexRank algorithm discussed by Güneş Er
 ## Examples with Twitter
 
 ### Using lexRankr in tidy frame work
-[See Vignette](https://cran.r-project.org/web/packages/lexRankr/vignettes/Analyzing_Twitter_with_LexRankr.html)
+[See Vignette](https://CRAN.R-project.org/package=lexRankr/vignettes/Analyzing_Twitter_with_LexRankr.html)
 
 ### Using lexRankr's helper functions
     
