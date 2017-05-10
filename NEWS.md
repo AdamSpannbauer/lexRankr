@@ -1,3 +1,8 @@
+# lexRankr 0.4.1
+
+* added bug report url: (https://github.com/AdamSpannbauer/lexRankr/issues/)
+* formatting updates to README.md
+
 # lexRankr 0.4.0
 
 * added functions `unnest_sentences` and `unnest_sentences_` to parse sentences in a dataframe  following tidy data principles
