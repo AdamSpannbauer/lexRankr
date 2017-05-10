@@ -33,4 +33,3 @@ Parse a character vector of documents into into both sentences and a clean vecto
 sentenceTokenParse(c("Bill is trying to earn a Ph.D.", "You have to have a 5.0 GPA."),
                    docId=c("d1","d2"))
 }
-

@@ -9,7 +9,7 @@ License: MIT + file LICENSE
 URL: https://github.com/AdamSpannbauer/lexRankr/
 BugReports: https://github.com/AdamSpannbauer/lexRankr/issues/
 LazyData: TRUE
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 Imports: dplyr, tidyr, magrittr, stringr, SnowballC, igraph, tm,
     Rcpp
 LinkingTo: Rcpp
