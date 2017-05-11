@@ -6,5 +6,5 @@
 
 sentence_parser <- function(text) {
   stringr::str_split(string = text, 
-                     pattern = stringr::regex("(?<!\\w\\.\\w.)(?<![A-Z][a-z]\\.)(?<=\\.|\\?)\\s"))
+                     pattern = stringr::regex("(?<!\\w\\.\\w.)(?<![A-Z][a-z]\\.)(?<=\\.|\\?|\\!)\\s"))
 }
