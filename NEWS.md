@@ -1,3 +1,8 @@
+
+# lexRankr 0.5.1
+
+* bug fix in sentence parsing for parsing exclamatory sentences
+
 # lexRankr 0.4.1
 
 * added bug report url: (https://github.com/AdamSpannbauer/lexRankr/issues/)
