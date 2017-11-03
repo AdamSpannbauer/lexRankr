@@ -76,30 +76,31 @@ bind_lexrank_ <- function(tbl, text, doc_id, sent_id=NULL, level=c("sentences", 
       subTokenDfList <- lapply(seq_along(tokenList), function(j) {
         data.frame(docId=tbl[[doc_id]][i], sentenceId=doc_sent_ids[i], token=tokenList[[j]], stringsAsFactors = FALSE)
       })
-      dplyr::bind_rows(subTokenDfList)
+      do.call('rbind', subTokenDfList)
     })
     
-    tokenDf <- dplyr::bind_rows(tokenDfList) %>%
-      dplyr::filter(!is.na(token))
+    tokenDf <- do.call('rbind', tokenDfList)
+    tokenDf <- tokenDf[!is.na(tokenDf$token),]
   } else {
-    tokenDf <- dplyr::tibble(docId=tbl[[doc_id]], sentenceId=doc_sent_ids, token=tbl[[text]])
+    tokenDf <- data.frame(docId=tbl[[doc_id]], sentenceId=doc_sent_ids, token=tbl[[text]], stringsAsFactors = FALSE)
   }
   
   similDf <- sentenceSimil(tokenDf$sentenceId, tokenDf$token, tokenDf$docId)
   topSentIdsDf <- lexRankFromSimil(similDf$sent1, similDf$sent2, similDf$similVal, threshold=threshold, n=Inf, returnTies=TRUE, usePageRank=usePageRank, damping=damping, continuous=continuous)
-  lex_lookup <- stringr::str_split_fixed(topSentIdsDf$sentenceId, uuid_sep, n=2) %>% 
-    dplyr::as_data_frame() %>% 
-    stats::setNames(c(doc_id, sent_id))
+  lex_lookup <- do.call('rbind', strsplit(topSentIdsDf$sentenceId, uuid_sep, fixed=TRUE)) 
+  lex_lookup <- as.data.frame(lex_lookup)
+  names(lex_lookup) = c(doc_id, sent_id)
+  
   class(lex_lookup[[doc_id]])  <- doc_id_class
   
   lex_lookup$lexrank <- topSentIdsDf$value
   
   if(level=="tokens") {
     class(lex_lookup[[sent_id]]) <- class(tbl[[sent_id]])
-    tbl_out <- dplyr::left_join(tbl, lex_lookup, by=c(doc_id, sent_id))
+    tbl_out <- merge(tbl, lex_lookup, all.x=TRUE, by=c(doc_id, sent_id))
   } else {
     tbl[[uuid_kinda]] <- as.character(sent_ids)
-    tbl_out <- dplyr::left_join(tbl, lex_lookup, by=c(doc_id, uuid_kinda))
+    tbl_out <- merge(tbl, lex_lookup, all.x=TRUE, by=c(doc_id, uuid_kinda))
     tbl_out[[uuid_kinda]] <- NULL
   }
   
