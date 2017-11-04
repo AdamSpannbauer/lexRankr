@@ -42,11 +42,9 @@ tokenize <- function(text, removePunc=TRUE, removeNum=TRUE, toLower=TRUE, stemWo
   if (removeNum) text <- gsub(x=text,pattern="([[:digit:]])",replacement="")
   if (toLower) text <- tolower(text)
 
-  text <- text %>%
-    gsub(pattern="([^[:alnum:] ])",replacement=" \\1 ") %>% 
-    gsub(pattern="\\s+",replacement=" ") %>%
-    trimws() %>% 
-    stringr::str_split(pattern=" ")
+  text <- gsub(x=text, pattern="([^[:alnum:] ])",replacement=" \\1 ")
+  text <- trimws(gsub(x=text, pattern="\\s+",replacement=" "))
+  text <- strsplit(x=text, split=" ", fixed=TRUE)
 
   if(rmStopWordFlag) text <- lapply(text, function(tokens) {
     checkTokens <- tolower(tokens)
@@ -58,7 +56,13 @@ tokenize <- function(text, removePunc=TRUE, removeNum=TRUE, toLower=TRUE, stemWo
     if(length(nonStopTok) == 0) NA_character_ else nonStopTok
   })
   if(stemWords) {
-    text <- lapply(text, SnowballC::wordStem)
+    text <- lapply(text, function(w) {
+      if(!is.na(w)) {
+        SnowballC::wordStem(w)
+      } else {
+        w
+      }
+    })
   }
 
   tokenList <- lapply(text, function(tokens) {
