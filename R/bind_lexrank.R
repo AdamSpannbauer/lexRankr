@@ -101,6 +101,7 @@ bind_lexrank_ <- function(tbl, text, doc_id, sent_id=NULL, level=c("sentences", 
   } else {
     tbl[[uuid_kinda]] <- as.character(sent_ids)
     tbl_out <- merge(tbl, lex_lookup, all.x=TRUE, by=c(doc_id, uuid_kinda))
+    tbl_out <- tbl_out[order(as.numeric(tbl_out[[uuid_kinda]])),]
     tbl_out[[uuid_kinda]] <- NULL
   }
   
