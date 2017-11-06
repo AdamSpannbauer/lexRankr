@@ -89,7 +89,7 @@ bind_lexrank_ <- function(tbl, text, doc_id, sent_id=NULL, level=c("sentences", 
   topSentIdsDf <- lexRankFromSimil(similDf$sent1, similDf$sent2, similDf$similVal, threshold=threshold, n=Inf, returnTies=TRUE, usePageRank=usePageRank, damping=damping, continuous=continuous)
   lex_lookup <- do.call('rbind', strsplit(topSentIdsDf$sentenceId, uuid_sep, fixed=TRUE)) 
   lex_lookup <- as.data.frame(lex_lookup)
-  names(lex_lookup) = c(doc_id, sent_id)
+  names(lex_lookup) <- c(doc_id, sent_id)
   
   class(lex_lookup[[doc_id]])  <- doc_id_class
   
@@ -104,7 +104,7 @@ bind_lexrank_ <- function(tbl, text, doc_id, sent_id=NULL, level=c("sentences", 
     tbl_out <- tbl_out[order(as.numeric(tbl_out[[uuid_kinda]])),]
     tbl_out[[uuid_kinda]] <- NULL
   }
-  
+  rownames(tbl_out) <- NULL
   class(tbl_out) <- tbl_class
   tbl_out
 }
