@@ -41,16 +41,18 @@ unnest_sentences_ <- function(tbl, output, input, output_id="sent_id", drop=TRUE
   }
   
   tbl_out_list <- lapply(seq_along(parsed_sents), function(i) {
-    row_i = tbl[i,]
+    row_i = tbl[i,,drop=FALSE]
     parsed_sent_rows_i = data.frame(sent_id = seq_along(parsed_sents[[i]]),
                                     sents = parsed_sents[[i]], 
                                     stringsAsFactors = FALSE)
     names(parsed_sent_rows_i) = c(output_id, output)
     out = suppressWarnings(cbind(row_i, parsed_sent_rows_i))
+    names(out)[seq_along(row_i)] = names(row_i)
     out 
   })
-  
-  do.call('rbind', tbl_out_list)
+  out_tbl = do.call('rbind', tbl_out_list)
+  rownames(out_tbl) = 1:nrow(out_tbl)
+  return(out_tbl)
 }
 
 #' @rdname unnest_sentences_
