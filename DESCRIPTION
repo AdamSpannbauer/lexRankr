@@ -2,10 +2,7 @@ Package: lexRankr
 Type: Package
 Title: Extractive Summarization of Text with the LexRank Algorithm
 Version: 0.4.1
-Author@R: c(
-    person("Adam", "Spannbauer", email="spannbaueradam@gmail.com", c("aut", "cre")),
-    person("Bryan", "White", role = "ctb"),
-    )
+Author: Adam Spannbauer [aut, cre], Bryan White [ctb]
 Maintainer: Adam Spannbauer <spannbaueradam@gmail.com>
 Description: An R implementation of the LexRank algorithm described by G. Erkan and D. R. Radev (2004) <DOI:10.1613/jair.1523>.
 License: MIT + file LICENSE
