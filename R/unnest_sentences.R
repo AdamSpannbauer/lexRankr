@@ -8,12 +8,13 @@
 #' @param drop whether original input column should get dropped
 #' @return A data.frame of parsed sentences and sentence ids
 #' @examples
-#' library(dplyr)
+#' library(magrittr)
 #' 
-#' df <- dplyr::tibble(doc_id = 1:3, 
-#'                     text = c("Testing the system. Second sentence for you.", 
-#'                              "System testing the tidy documents df.", 
-#'                              "Documents will be parsed and lexranked."))
+#' df <- data.frame(doc_id = 1:3, 
+#'                  text = c("Testing the system. Second sentence for you.", 
+#'                           "System testing the tidy documents df.", 
+#'                           "Documents will be parsed and lexranked."),
+#'                  stringsAsFactors=FALSE)
 #'
 #' unnest_sentences(df, sents, text)
 #' unnest_sentences_(df, "sents", "text")
@@ -34,16 +35,22 @@ unnest_sentences_ <- function(tbl, output, input, output_id="sent_id", drop=TRUE
   
   text <- tbl[[input]]
   parsed_sents <- sentence_parser(text)
-  sent_ids     <- lapply(parsed_sents, function(.x) 1:length(.x))
   
   if (drop) {
     tbl[[input]] <- NULL
   }
   
-  tbl[[output_id]] <- sent_ids
-  tbl[[output]]    <- parsed_sents
+  tbl_out_list <- lapply(seq_along(parsed_sents), function(i) {
+    row_i = tbl[i,]
+    parsed_sent_rows_i = data.frame(sent_id = seq_along(parsed_sents[[i]]),
+                                    sents = parsed_sents[[i]], 
+                                    stringsAsFactors = FALSE)
+    names(parsed_sent_rows_i) = c(output_id, output)
+    out = suppressWarnings(cbind(row_i, parsed_sent_rows_i))
+    out 
+  })
   
-  tidyr::unnest(tbl)
+  do.call('rbind', tbl_out_list)
 }
 
 #' @rdname unnest_sentences_
