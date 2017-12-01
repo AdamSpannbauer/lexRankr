@@ -47,6 +47,7 @@ lexRank <- function(text, docId = "create", threshold=.2, n=3, returnTies=TRUE, 
   if(Verbose) cat("DONE\nFormatting Output...")
   returnDf <- merge(sentDf, topNSents, by="sentenceId")
   returnDf <- returnDf[order(-returnDf$value), c("docId", "sentenceId", "sentence", "value")]
+  rownames(returnDf) = NULL
   if(Verbose) cat("DONE\n")
 
   return(returnDf)
