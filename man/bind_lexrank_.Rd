@@ -41,20 +41,21 @@ A dataframe with an additional column of lexrank scores (column is given name le
 Bind lexrank scores to a dataframe of sentences or to a dataframe of tokens with sentence ids
 }
 \examples{
-library(dplyr)
+library(magrittr)
 
-df <- dplyr::tibble(doc_id = 1:3, 
-                    text = c("Testing the system. Second sentence for you.", 
-                             "System testing the tidy documents df.", 
-                             "Documents will be parsed and lexranked."))
-
-df \%>\% 
-  unnest_sentences(sents, text) \%>\% 
-  bind_lexrank(sents, doc_id, level = 'sentences')
+df <- data.frame(doc_id = 1:3, 
+                 text = c("Testing the system. Second sentence for you.", 
+                          "System testing the tidy documents df.", 
+                          "Documents will be parsed and lexranked."),
+                 stringsAsFactors = FALSE)
 
 df \%>\% 
   unnest_sentences(sents, text) \%>\% 
-  bind_lexrank_("sents", "doc_id", level = 'sentences')
+  bind_lexrank(sents, doc_id, level = "sentences")
+
+df \%>\% 
+  unnest_sentences(sents, text) \%>\% 
+  bind_lexrank_("sents", "doc_id", level = "sentences")
 
 df <- data.frame(doc_id  = c(1, 1, 1, 1, 1, 1, 1, 2, 2, 2,
                              2, 2, 2, 3, 3, 3, 3, 3, 3), 

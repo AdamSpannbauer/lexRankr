@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // idfCosineSimil
 NumericVector idfCosineSimil(NumericMatrix mat);
-RcppExport SEXP lexRankr_idfCosineSimil(SEXP matSEXP) {
+RcppExport SEXP _lexRankr_idfCosineSimil(SEXP matSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;

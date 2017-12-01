@@ -18,6 +18,7 @@ utils::globalVariables(c("n","tf","idf","tfidf","V1","V2","similVal"))
 #'                token=c("i", "ran", "jane", "ran"))
 #' @importFrom utils combn
 #' @importFrom magrittr "%>%"
+#' @importFrom stats xtabs
 
 #' @export
 sentenceSimil <- function(sentenceId, token, docId=NULL, sentencesAsDocs=FALSE){
