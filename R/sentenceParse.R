@@ -31,7 +31,7 @@ sentenceParse <- function(text, docId = "create") {
       data.frame(docId=docId[i], sentenceId=paste0(docId[i],"_",seq_along(sentVec)), sentence=sentVec, stringsAsFactors = FALSE)
     }
   })
-  sentenceDf <- dplyr::bind_rows(sentenceDfList)
+  sentenceDf <- do.call('rbind', sentenceDfList)
   class(sentenceDf) <- "data.frame"
   return(sentenceDf)
 }
