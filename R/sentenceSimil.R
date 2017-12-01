@@ -62,7 +62,8 @@ sentenceSimil <- function(sentenceId, token, docId=NULL, sentencesAsDocs=FALSE){
     stm = merge(tokenDf, stm, by=c("docId","token"), all.x=FALSE, all.y=TRUE)
     stm = unique(stm[stm$tfidf > 0, c("sentenceId", "token", "tfidf")])
   } else if (sentencesAsDocs) {
-    stm = unique(stm[stm$tfidf > 0, c("sentenceId", "token", "tfidf")])
+    stm = unique(stm[stm$tfidf > 0, c("docId", "token", "tfidf")])
+    names(stm) = c("sentenceId", "token", "tfidf")
   }
   
   stm = stm[order(stm$sentenceId, stm$token),]
