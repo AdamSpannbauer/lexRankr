@@ -116,7 +116,9 @@ test_that("output value", {
                                           "Documents will be parsed and lexranked.", "Documents will be parsed and lexranked.", "Documents will be parsed and lexranked."),
                                 tokens = c("testing", "the", "system", "second", "sentence", "for", "you", "system", "testing", "the", 
                                            "tidy", "documents", "df", "documents", "will", "be", "parsed", "and", "lexranked"),
-                                lexrank = c(0.16667, NA, 0.16667, NA, NA, NA, NA, 0.16667, 0.16667, NA, NA, 0.16667, NA, 0.16667, NA, NA, NA, NA, NA),
+                                lexrank = c(0.07143, 0.07143, 0.07143, 0.07143, NA, 0.07143, 0.07143, 0.07143, 
+                                            0.07143, 0.07143, NA, 0.07143, NA, 0.07143, 0.07143, 0.07143, 
+                                            NA, 0.07143, NA),
                                 stringsAsFactors = FALSE)
   
   expect_equal(test_result, expected_result)
