@@ -32,7 +32,7 @@ lexRankFromSimil <- function(s1, s2, simil, threshold=.2, n=3, returnTies=TRUE, 
 
   if (length(s1) != length(s2) | length(s1) != length(simil)) stop("s1, s2, & simil must all be the same length")
   if (sum(simil) == 0) stop("all simil values are zero")
-  if (sum(simil > threshold) == 0) stop("all simil values are below threshold")
+  if (sum(simil > threshold) == 0 & !continuous) stop("all simil values are below threshold")
 
   s1 <- as.character(s1)
   s2 <- as.character(s2)
