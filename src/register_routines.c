@@ -4,14 +4,14 @@
 #include <R_ext/Rdynload.h>
 
 /* FIXME: 
-  Check these declarations against the C/Fortran source code.
+Check these declarations against the C/Fortran source code.
 */
-  
-  /* .Call calls */
-  extern SEXP lexRankr_idfCosineSimil(SEXP);
+
+/* .Call calls */
+extern SEXP _lexRankr_idfCosineSimil(SEXP);
 
 static const R_CallMethodDef CallEntries[] = {
-  {"lexRankr_idfCosineSimil", (DL_FUNC) &lexRankr_idfCosineSimil, 1},
+  {"_lexRankr_idfCosineSimil", (DL_FUNC) &_lexRankr_idfCosineSimil, 1},
   {NULL, NULL, 0}
 };
 
