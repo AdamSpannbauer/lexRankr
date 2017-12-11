@@ -5,9 +5,11 @@
 \alias{unnest_sentences}
 \title{Split a column of text into sentences}
 \usage{
-unnest_sentences_(tbl, output, input, output_id = "sent_id", drop = TRUE)
+unnest_sentences_(tbl, output, input, doc_id = NULL, output_id = "sent_id",
+  drop = TRUE)
 
-unnest_sentences(tbl, output, input, output_id = "sent_id", drop = TRUE)
+unnest_sentences(tbl, output, input, doc_id = NULL, output_id = "sent_id",
+  drop = TRUE)
 }
 \arguments{
 \item{tbl}{dataframe containing column of text to be split into sentences}
@@ -15,6 +17,8 @@ unnest_sentences(tbl, output, input, output_id = "sent_id", drop = TRUE)
 \item{output}{name of column to be created to store parsed sentences}
 
 \item{input}{name of input column of text to be parsed into sentences}
+
+\item{doc_id}{column of document ids; if not provided it will be assumed that each row is a different document}
 
 \item{output_id}{name of column to be created to store sentence ids}
 
