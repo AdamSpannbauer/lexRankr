@@ -40,7 +40,7 @@ sentenceSimil <- function(sentenceId, token, docId=NULL, sentencesAsDocs=FALSE){
 
   ndoc <- length(unique(docId))
   if(ndoc > length(unique(sentenceId))) warning("There are more unique docIds than sentenceIds.  Verify you have passed the correct parameters to the function.")
-
+  
   tokenDf <- data.frame(docId=docId, sentenceId=sentenceId, token=token, stringsAsFactors = FALSE)
   
   stmList = split(tokenDf, paste0(tokenDf$docId,tokenDf$token))

@@ -76,10 +76,10 @@ test_that("test input checking", {
 # test output val ------------------------------------------------------
 test_that("output value", {
   df <- data.frame(doc_id = 1:3, 
-                    text = c("Testing the system. Second sentence for you.", 
-                             "System testing the tidy documents df.", 
-                             "Documents will be parsed and lexranked."),
-                    stringsAsFactors = FALSE) %>% 
+                   text = c("Testing the system. Second sentence for you.", 
+                            "System testing the tidy documents df.", 
+                            "Documents will be parsed and lexranked."),
+                   stringsAsFactors = FALSE) %>% 
     unnest_sentences(sents, text)
   
   test_result     <- bind_lexrank_(df, "sents", "doc_id", level="sentences")

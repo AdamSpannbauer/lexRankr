@@ -61,6 +61,7 @@ unnest_sentences_ <- function(tbl, output, input, doc_id=NULL, output_id="sent_i
       dfi[[output_id]] = seq_along(dfi[[output_id]])
       dfi
     })
+    
     out_tbl = do.call('rbind', out_tbl_list)
   }
   rownames(out_tbl) = NULL
