@@ -2,7 +2,6 @@
 #' @importFrom Rcpp sourceCpp
 NULL
 
-utils::globalVariables(c("n","tf","idf","tfidf","V1","V2","similVal"))
 #' Compute distance between sentences
 
 #' @description Compute distance between sentences using modified idf cosine distance from "LexRank: Graph-based Lexical Centrality as Salience in Text Summarization".  Output can be used as input to \code{\link{lexRankFromSimil}}.

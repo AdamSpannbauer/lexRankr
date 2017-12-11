@@ -19,7 +19,7 @@ tokenize(text, removePunc = TRUE, removeNum = TRUE, toLower = TRUE,
 
 \item{stemWords}{\code{TRUE} or \code{FALSE} indicating whether or not to stem resulting tokens.  If \code{TRUE}, the outputted tokens will be tokenized using \code{SnowballC::wordStem()}.  Defaults to \code{TRUE}.}
 
-\item{rmStopWords}{\code{TRUE}, \code{FALSE}, or character vector of stopwords to remove. If \code{TRUE}, words in \code{tm::stopwords("SMART")} will be removed prior to stemming. If \code{FALSE}, no stopword removal will occur. If a character vector is passed, this vector will be used as the list of stopwords to be removed.  Defaults to \code{TRUE}.}
+\item{rmStopWords}{\code{TRUE}, \code{FALSE}, or character vector of stopwords to remove. If \code{TRUE}, words in \code{lexRankr::smart_stopwords} will be removed prior to stemming. If \code{FALSE}, no stopword removal will occur. If a character vector is passed, this vector will be used as the list of stopwords to be removed.  Defaults to \code{TRUE}.}
 }
 \description{
 Tokenize a character vector

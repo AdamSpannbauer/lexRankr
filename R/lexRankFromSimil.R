@@ -1,4 +1,3 @@
-utils::globalVariables(c("weight","sentenceId","degree","degRank"))
 #' Compute LexRanks from pairwise sentence similarities
 
 #' @description Compute LexRanks from sentence pair similarities using the page rank algorithm or degree centrality the methods used to compute lexRank are discussed in "LexRank: Graph-based Lexical Centrality as Salience in Text Summarization."

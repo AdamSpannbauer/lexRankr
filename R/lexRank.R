@@ -1,4 +1,3 @@
-utils::globalVariables(c("value"))
 #' Extractive text summarization with LexRank
 
 #' @description Compute LexRanks from a vector of documents using the page rank algorithm or degree centrality the methods used to compute lexRank are discussed in "LexRank: Graph-based Lexical Centrality as Salience in Text Summarization."
@@ -15,7 +14,7 @@ utils::globalVariables(c("value"))
 #' @param removeNum \code{TRUE} or \code{FALSE} indicating whether or not to remove numbers from text while tokenizing.  If \code{TRUE}, numbers will be removed.  Defaults to \code{TRUE}.
 #' @param toLower \code{TRUE} or \code{FALSE} indicating whether or not to coerce all of text to lowercase while tokenizing.  If \code{TRUE}, \code{text} will be coerced to lowercase.  Defaults to \code{TRUE}.
 #' @param stemWords \code{TRUE} or \code{FALSE} indicating whether or not to stem resulting tokens.  If \code{TRUE}, the outputted tokens will be tokenized using \code{SnowballC::wordStem()}.  Defaults to \code{TRUE}.
-#' @param rmStopWords \code{TRUE}, \code{FALSE}, or character vector of stopwords to remove from tokens. If \code{TRUE}, words in \code{tm::stopwords("SMART")} will be removed prior to stemming. If \code{FALSE}, no stopword removal will occur. If a character vector is passed, this vector will be used as the list of stopwords to be removed.  Defaults to \code{TRUE}.
+#' @param rmStopWords \code{TRUE}, \code{FALSE}, or character vector of stopwords to remove from tokens. If \code{TRUE}, words in \code{lexRankr::smart_stopwords} will be removed prior to stemming. If \code{FALSE}, no stopword removal will occur. If a character vector is passed, this vector will be used as the list of stopwords to be removed.  Defaults to \code{TRUE}.
 #' @param Verbose \code{TRUE} or \code{FALSE} indicating whether or not to \code{cat} progress messages to the console while running.  Defaults to \code{TRUE}.
 
 #' @return A 2 column dataframe with columns \code{sentenceId} and \code{value}. \code{sentence} contains the ids of the top \code{n} sentences in descending order by \code{value}. \code{value} contains page rank score (if \code{usePageRank==TRUE}) or degree centrality (if \code{usePageRank==FALSE}).
