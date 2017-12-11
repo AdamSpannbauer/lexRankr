@@ -13,13 +13,15 @@
 #' @param ... tokenizing options to be passed to lexRankr::tokenize.  Ignored if \code{level} is "sentences"
 #' @return A dataframe with an additional column of lexrank scores (column is given name lexrank)
 #' @examples
-#' library(magrittr)
 #' 
 #' df <- data.frame(doc_id = 1:3, 
 #'                  text = c("Testing the system. Second sentence for you.", 
 #'                           "System testing the tidy documents df.", 
 #'                           "Documents will be parsed and lexranked."),
 #'                  stringsAsFactors = FALSE)
+#' 
+#' \dontrun{
+#' library(magrittr)
 #' 
 #' df %>% 
 #'   unnest_sentences(sents, text) %>% 
@@ -42,6 +44,7 @@
 #' 
 #' df %>% 
 #'   bind_lexrank(tokens, doc_id, sent_id, level = 'tokens')
+#' }
 #' @export
 bind_lexrank_ <- function(tbl, text, doc_id, sent_id=NULL, level=c("sentences", "tokens"), threshold=.2, usePageRank=TRUE, damping=0.85, continuous=FALSE, ...) {
   if(!is.data.frame(tbl)) stop("tbl must be a dataframe")

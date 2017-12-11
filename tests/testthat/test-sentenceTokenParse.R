@@ -28,9 +28,8 @@ test_that("All clean options TRUE", {
                                    rmStopWords=TRUE)
   
   expectedResultSentences <- sentenceParse(testDocs)
-  expectedResultTokens <- lexRankr::tokenize(testDocs) %>% 
-    unlist() %>% 
-    .[which(!is.na(.))]
+  expectedResultTokens <- unlist(lexRankr::tokenize(testDocs))
+  expectedResultTokens <- expectedResultTokens[which(!is.na(expectedResultTokens))]
   
   expect_equal(testResult$sentences, expectedResultSentences)
   expect_equal(testResult$tokens$token, expectedResultTokens)

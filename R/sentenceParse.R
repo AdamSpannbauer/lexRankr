@@ -8,7 +8,6 @@
 #' sentenceParse("Bill is trying to earn a Ph.D.", "You have to have a 5.0 GPA.")
 #' sentenceParse(c("Bill is trying to earn a Ph.D.", "You have to have a 5.0 GPA."),
 #'                docId=c("d1","d2"))
-#' @importFrom magrittr "%>%"
 
 #' @export
 sentenceParse <- function(text, docId = "create") {

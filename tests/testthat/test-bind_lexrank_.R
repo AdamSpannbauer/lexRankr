@@ -8,17 +8,15 @@ test_that("correct ouput class and str", {
                             "Documents will be parsed and lexranked."),
                    stringsAsFactors = FALSE)
   
-  test_result <- df %>% 
-    unnest_sentences(sents, text) %>% 
-    bind_lexrank_("sents", "doc_id", level = 'sentences')
+  test_result <- unnest_sentences(df, sents, text)
+  test_result <- bind_lexrank_(test_result, "sents", "doc_id", level = 'sentences')
   
   expect_equal(dim(test_result), c(4,4))
   expect_true(is.data.frame(test_result))
   expect_equal(names(test_result), c("doc_id","sent_id","sents","lexrank"))
   
-  test_result <- df %>% 
-    unnest_sentences(sents, text, drop=FALSE) %>% 
-    bind_lexrank_("sents", "doc_id", level = 'sentences')
+  test_result <- unnest_sentences(df, sents, text, drop=FALSE) 
+  test_result <- bind_lexrank_(test_result, "sents", "doc_id", level = 'sentences')
   
   expect_equal(dim(test_result), c(4,5))
   expect_equal(names(test_result), c("doc_id","text","sent_id","sents","lexrank"))
@@ -35,8 +33,7 @@ test_that("correct ouput class and str", {
                               "tidy", "documents", "df", "documents", "will", "be", "parsed", "and", "lexranked"),
                    stringsAsFactors = FALSE)
   
-  test_result <- df %>% 
-    bind_lexrank_("tokens", "doc_id", "sent_id", "tokens")
+  test_result <- bind_lexrank_(df, "tokens", "doc_id", "sent_id", "tokens")
   
   expect_equal(dim(test_result), c(19,5))
   expect_equal(names(test_result), c("doc_id","sent_id","sents","tokens","lexrank"))
@@ -48,8 +45,8 @@ test_that("test input checking", {
                    text = c("Testing the system. Second sentence for you.", 
                             "System testing the tidy documents df.", 
                             "Documents will be parsed and lexranked."),
-                   stringsAsFactors = FALSE) %>% 
-    unnest_sentences(sents, text)
+                   stringsAsFactors = FALSE)
+  df <- unnest_sentences(df, sents, text)
   
   expect_error(bind_lexrank_(df, "sents", "fake"))
   expect_error(bind_lexrank_(NULL, "sents", "doc_id"))
@@ -79,8 +76,8 @@ test_that("output value", {
                    text = c("Testing the system. Second sentence for you.", 
                             "System testing the tidy documents df.", 
                             "Documents will be parsed and lexranked."),
-                   stringsAsFactors = FALSE) %>% 
-    unnest_sentences(sents, text)
+                   stringsAsFactors = FALSE)
+  df <- unnest_sentences(df, sents, text)
   
   test_result     <- bind_lexrank_(df, "sents", "doc_id", level="sentences")
   expected_result <- data.frame(doc_id = c(1L, 1L, 2L, 3L), 

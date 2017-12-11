@@ -14,7 +14,6 @@
 #' @references \url{http://www.cs.cmu.edu/afs/cs/project/jair/pub/volume22/erkan04a-html/erkan04a.html}
 #' @examples
 #' lexRankFromSimil(s1=c("d1_1","d1_1","d1_2"), s2=c("d1_2","d2_1","d2_1"), simil=c(.01,.03,.5))
-#' @importFrom magrittr "%>%"
 
 #' @export
 

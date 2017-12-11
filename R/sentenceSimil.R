@@ -16,7 +16,6 @@ NULL
 #'                sentenceId=c("d1_1","d1_1","d2_1","d2_1"),
 #'                token=c("i", "ran", "jane", "ran"))
 #' @importFrom utils combn
-#' @importFrom magrittr "%>%"
 #' @importFrom stats xtabs
 
 #' @export

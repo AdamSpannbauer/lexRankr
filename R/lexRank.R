@@ -23,7 +23,6 @@
 #' lexRank(c("This is a test.","Tests are fun.",
 #' "Do you think the exam will be hard?","Is an exam the same as a test?",
 #' "How many questions are going to be on the exam?"))
-#' @importFrom magrittr "%>%"
 
 #' @export
 lexRank <- function(text, docId = "create", threshold=.2, n=3, returnTies=TRUE, usePageRank=TRUE, damping=0.85, continuous=FALSE, sentencesAsDocs=FALSE, removePunc=TRUE, removeNum=TRUE, toLower=TRUE, stemWords=TRUE, rmStopWords=TRUE, Verbose=TRUE){

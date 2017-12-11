@@ -9,7 +9,6 @@
 #' @param drop whether original input column should get dropped
 #' @return A data.frame of parsed sentences and sentence ids
 #' @examples
-#' library(magrittr)
 #' 
 #' df <- data.frame(doc_id = 1:3, 
 #'                  text = c("Testing the system. Second sentence for you.", 
@@ -20,8 +19,12 @@
 #' unnest_sentences(df, sents, text)
 #' unnest_sentences_(df, "sents", "text")
 #' 
+#' \dontrun{
+#' library(magrittr)
+#' 
 #' df %>% 
 #'   unnest_sentences(sents, text)
+#' }
 
 #' @export
 unnest_sentences_ <- function(tbl, output, input, doc_id=NULL, output_id="sent_id", drop=TRUE) {

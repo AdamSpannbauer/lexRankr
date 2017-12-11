@@ -31,7 +31,6 @@ A data.frame of parsed sentences and sentence ids
 Split a column of text into sentences
 }
 \examples{
-library(magrittr)
 
 df <- data.frame(doc_id = 1:3, 
                  text = c("Testing the system. Second sentence for you.", 
@@ -42,6 +41,10 @@ df <- data.frame(doc_id = 1:3,
 unnest_sentences(df, sents, text)
 unnest_sentences_(df, "sents", "text")
 
+\dontrun{
+library(magrittr)
+
 df \%>\% 
   unnest_sentences(sents, text)
+}
 }

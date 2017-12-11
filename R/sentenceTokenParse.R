@@ -12,7 +12,6 @@
 #' @examples
 #' sentenceTokenParse(c("Bill is trying to earn a Ph.D.", "You have to have a 5.0 GPA."),
 #'                    docId=c("d1","d2"))
-#' @importFrom magrittr "%>%"
 
 #' @export
 sentenceTokenParse <- function(text, docId = "create", removePunc=TRUE, removeNum=TRUE, toLower=TRUE, stemWords=TRUE, rmStopWords=TRUE){
