@@ -16,11 +16,10 @@ sentenceParse <- function(text, docId = "create") {
   if(length(text) < 1) stop("text must be at least length 1")
   docId <- as.character(docId)
   if(length(docId)==1 & docId[1]=="create") {
-    createDocIds <- TRUE
-  } else if(length(docId)==length(text)) {
-    createDocIds <- FALSE
-  } else if(length(docId)!=length(text)) stop("docId vector must be same length as text vector")
-  
+      createDocIds <- TRUE
+    } else if(length(docId)==length(text)) {
+      createDocIds <- FALSE
+    } else if(length(docId)!=length(text)) stop("docId vector must be same length as text vector")
   
   sentences <- sentence_parser(text)
   sentenceDfList <- lapply(seq_along(sentences), function(i) {

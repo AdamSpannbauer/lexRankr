@@ -9,12 +9,13 @@
 #' @param drop whether original input column should get dropped
 #' @return A data.frame of parsed sentences and sentence ids
 #' @examples
-#' library(dplyr)
+#' library(magrittr)
 #' 
-#' df <- dplyr::tibble(doc_id = 1:3, 
-#'                     text = c("Testing the system. Second sentence for you.", 
-#'                              "System testing the tidy documents df.", 
-#'                              "Documents will be parsed and lexranked."))
+#' df <- data.frame(doc_id = 1:3, 
+#'                  text = c("Testing the system. Second sentence for you.", 
+#'                           "System testing the tidy documents df.", 
+#'                           "Documents will be parsed and lexranked."),
+#'                  stringsAsFactors=FALSE)
 #'
 #' unnest_sentences(df, sents, text)
 #' unnest_sentences_(df, "sents", "text")
@@ -38,26 +39,33 @@ unnest_sentences_ <- function(tbl, output, input, doc_id=NULL, output_id="sent_i
   
   text <- tbl[[input]]
   parsed_sents <- sentence_parser(text)
-  sent_ids     <- lapply(parsed_sents, function(.x) 1:length(.x))
   
   if (drop) {
     tbl[[input]] <- NULL
   }
   
-  tbl[[output_id]] <- sent_ids
-  tbl[[output]]    <- parsed_sents
-  
-  out = tidyr::unnest(tbl)
+  tbl_out_list <- lapply(seq_along(parsed_sents), function(i) {
+    row_i = tbl[i,,drop=FALSE]
+    parsed_sent_rows_i = data.frame(sent_id = seq_along(parsed_sents[[i]]),
+                                    sents = parsed_sents[[i]], 
+                                    stringsAsFactors = FALSE)
+    names(parsed_sent_rows_i) = c(output_id, output)
+    out = suppressWarnings(cbind(row_i, parsed_sent_rows_i))
+    names(out)[seq_along(row_i)] = names(row_i)
+    out 
+  })
+  out_tbl = do.call('rbind', tbl_out_list)
   if(!is.null(doc_id)) {
-    out_tbl_list = split(out, out[[doc_id]])
+    out_tbl_list = split(out_tbl, out_tbl[[doc_id]])
     out_tbl_list = lapply(out_tbl_list, function(dfi) {
       dfi[[output_id]] = seq_along(dfi[[output_id]])
       dfi
     })
-    out = do.call('rbind', out_tbl_list)
+    
+    out_tbl = do.call('rbind', out_tbl_list)
   }
-  rownames(out) = NULL
-  return(out)
+  rownames(out_tbl) = NULL
+  return(out_tbl)
 }
 
 #' @rdname unnest_sentences_

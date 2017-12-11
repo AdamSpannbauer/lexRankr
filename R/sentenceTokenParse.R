@@ -25,10 +25,10 @@ sentenceTokenParse <- function(text, docId = "create", removePunc=TRUE, removeNu
     subTokenDfList <- lapply(seq_along(tokenList), function(j) {
       data.frame(docId=sentenceDf$docId[i], sentenceId=sentenceDf$sentenceId[i], token=tokenList[[j]], stringsAsFactors = FALSE)
     })
-    dplyr::bind_rows(subTokenDfList)
+    do.call('rbind', subTokenDfList)
   })
-  tokenDf <- dplyr::bind_rows(tokenDfList) %>%
-    dplyr::filter(!is.na(token))
+  tokenDf <- do.call('rbind', tokenDfList)
+  tokenDf <- tokenDf[!is.na(tokenDf$token),]
   class(tokenDf) <- "data.frame"
 
   list(sentences=sentenceDf, tokens=tokenDf)

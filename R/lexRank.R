@@ -45,9 +45,9 @@ lexRank <- function(text, docId = "create", threshold=.2, n=3, returnTies=TRUE, 
   if(Verbose) cat("Applying LexRank...")
   topNSents <- lexRankFromSimil(s1=similDf$sent1, s2=similDf$sent2, simil=similDf$similVal, threshold=threshold, n=n, returnTies=returnTies, usePageRank=usePageRank, damping=damping, continuous=continuous)
   if(Verbose) cat("DONE\nFormatting Output...")
-  returnDf <- sentDf %>%
-    dplyr::inner_join(topNSents, by=c("sentenceId"="sentenceId")) %>%
-    dplyr::arrange(dplyr::desc(value))
+  returnDf <- merge(sentDf, topNSents, by="sentenceId")
+  returnDf <- returnDf[order(-returnDf$value), c("docId", "sentenceId", "sentence", "value")]
+  rownames(returnDf) = NULL
   if(Verbose) cat("DONE\n")
 
   return(returnDf)

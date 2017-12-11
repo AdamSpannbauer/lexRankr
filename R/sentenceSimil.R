@@ -18,6 +18,7 @@ utils::globalVariables(c("n","tf","idf","tfidf","V1","V2","similVal"))
 #'                token=c("i", "ran", "jane", "ran"))
 #' @importFrom utils combn
 #' @importFrom magrittr "%>%"
+#' @importFrom stats xtabs
 
 #' @export
 sentenceSimil <- function(sentenceId, token, docId=NULL, sentencesAsDocs=FALSE){
@@ -39,63 +40,43 @@ sentenceSimil <- function(sentenceId, token, docId=NULL, sentencesAsDocs=FALSE){
 
   ndoc <- length(unique(docId))
   if(ndoc > length(unique(sentenceId))) warning("There are more unique docIds than sentenceIds.  Verify you have passed the correct parameters to the function.")
-
-  tokenDf <- dplyr::data_frame(docId=docId, sentenceId=sentenceId, token=token)
-  stm <- tokenDf %>%
-    dplyr::group_by(docId,token) %>%
-    dplyr::summarise(tf = n()) %>%
-    dplyr::ungroup() %>%
-    dplyr::group_by(token) %>%
-    dplyr::mutate(idf = 1+log(ndoc/length(unique(docId)))) %>%
-    dplyr::mutate(tfidf = tf*idf) %>%
-    dplyr::ungroup()
-
+  
+  tokenDf <- data.frame(docId=docId, sentenceId=sentenceId, token=token, stringsAsFactors = FALSE)
+  
+  stmList = split(tokenDf, paste0(tokenDf$docId,tokenDf$token))
+  stmList = lapply(stmList, function(dfi) {
+    dfi[['tf']] = nrow(dfi)
+    unique(dfi)
+  })
+  stm = do.call('rbind', stmList)
+  stmList = split(stm, stm$token)
+  stmList = lapply(stmList, function(dfi) {
+    dfi[['idf']] = 1+log(ndoc/length(unique(dfi$docId)))
+    dfi[['tfidf']] = dfi$tf*dfi$idf
+    unique(dfi)
+  })
+  stm = do.call('rbind', stmList)
+  rownames(stm) = NULL
+  stm = stm[order(stm$docId, stm$token), c("docId", "token", "tf", "idf", "tfidf")]
+  
   if(!sentencesAsDocs) {
-    stm <- stm %>%
-      dplyr::right_join(tokenDf, by=c("docId"="docId", "token"="token")) %>%
-      dplyr::select(sentenceId, token, tfidf) %>%
-      dplyr::filter(tfidf > 0) %>%
-      unique()
+    stm = merge(tokenDf, stm, by=c("docId","token"), all.x=FALSE, all.y=TRUE)
+    stm = unique(stm[stm$tfidf > 0, c("sentenceId", "token", "tfidf")])
   } else if (sentencesAsDocs) {
-    stm <- stm %>%
-      dplyr::select(sentenceId=docId, token, tfidf) %>%
-      dplyr::filter(tfidf > 0) %>%
-      unique()
+    stm = unique(stm[stm$tfidf > 0, c("docId", "token", "tfidf")])
+    names(stm) = c("sentenceId", "token", "tfidf")
   }
-
+  
+  stm = stm[order(stm$sentenceId, stm$token),]
+  
   if(nrow(stm)==0) stop("All values in sentence term tfidf matrix are 0.  Similarities would return as NaN")
   if(length(unique((stm$sentenceId))) == 1) stop("Only one sentence had nonzero tfidf scores.  Similarities would return as NaN")
 
-  stm <- tidyr::spread(stm, key=token, value=tfidf, fill=0, drop=FALSE)
-
-  matRowNames <- stm$sentenceId
-
-  stm <- stm %>%
-    dplyr::select(-sentenceId) %>%
-    as.matrix()
-  rownames(stm) <- matRowNames
-
-  #old non C slow version for idfcosine similarity
-  # idfCosine <- function(x,y) {
-  #   sum(x*y)/(sqrt(sum(x^2))*sqrt(sum(y^2)))
-  # }
-  # prDBname <- "idfCosine"
-  # while (proxy::pr_DB$entry_exists(prDBname)) {
-  #   prDBname <- paste0(prDBname, sample(100:999,1))
-  #   cat(prDBname,"\n")
-  # }
-  # proxy::pr_DB$set_entry(FUN=idfCosine, names=prDBname)
-  # similMat <- proxy::dist(stm, method=prDBname)
-  # proxy::pr_DB$delete_entry(prDBname)
-
-  sentencePairsDf <- sort(rownames(stm)) %>%
-    combn(2) %>%
-    t() %>%
-    as.data.frame(stringsAsFactors=FALSE) %>%
-    dplyr::mutate(similVal = idfCosineSimil(stm)) %>%
-    # dplyr::mutate(similVal = as.numeric(similMat)) %>%
-    dplyr::select(sent1=V1, sent2=V2, similVal)
-  class(sentencePairsDf) <- "data.frame"
+  stm = xtabs(tfidf ~ sentenceId + token, stm)
+  
+  sentencePairsDf = as.data.frame(t(combn(sort(rownames(stm)), 2)), stringsAsFactors=FALSE)
+  sentencePairsDf[['similVal']] = idfCosineSimil(stm)
+  names(sentencePairsDf) = c("sent1", "sent2", "similVal")
 
   return(sentencePairsDf)
 }

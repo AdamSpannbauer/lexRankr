@@ -26,8 +26,8 @@ test_that("object out value", {
                 "Is everything working as expected in my test?",
                 "Is it working?")
   
-  testResult <- lexRank(testDocs, Verbose = FALSE) %>% 
-    dplyr::mutate(value = round(value, 5))
+  testResult <- lexRank(testDocs, Verbose = FALSE) 
+  testResult$value = round(testResult$value, 5)
   
   expectedResult <- data.frame(docId = c(2L, 1L, 3L),
                                sentenceId = c("2_1", "1_1", "3_1"),

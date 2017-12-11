@@ -31,12 +31,13 @@ A data.frame of parsed sentences and sentence ids
 Split a column of text into sentences
 }
 \examples{
-library(dplyr)
+library(magrittr)
 
-df <- dplyr::tibble(doc_id = 1:3, 
-                    text = c("Testing the system. Second sentence for you.", 
-                             "System testing the tidy documents df.", 
-                             "Documents will be parsed and lexranked."))
+df <- data.frame(doc_id = 1:3, 
+                 text = c("Testing the system. Second sentence for you.", 
+                          "System testing the tidy documents df.", 
+                          "Documents will be parsed and lexranked."),
+                 stringsAsFactors=FALSE)
 
 unnest_sentences(df, sents, text)
 unnest_sentences_(df, "sents", "text")

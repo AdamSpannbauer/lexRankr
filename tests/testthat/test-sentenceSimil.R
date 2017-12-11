@@ -30,6 +30,18 @@ test_that("testing result str and class", {
   expect_true(is.character(testResult$sent1))
   expect_true(is.character(testResult$sent2))
   expect_true(is.numeric(testResult$similVal))
+  
+  testResult <- sentenceSimil(sentenceId = tokenDf$sentenceId,
+                              token = tokenDf$token,
+                              docId = tokenDf$docId,
+                              sentencesAsDocs = TRUE)
+  
+  expect_equal(class(testResult), "data.frame")
+  expect_equal(names(testResult), c("sent1","sent2","similVal"))
+  
+  expect_true(is.character(testResult$sent1))
+  expect_true(is.character(testResult$sent2))
+  expect_true(is.numeric(testResult$similVal))
 })
 
 

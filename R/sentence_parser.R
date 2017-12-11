@@ -5,6 +5,7 @@
 #' @return A list with length equal to `length(text)`; list elements are character vectors of text parsed with sentence regex
 
 sentence_parser <- function(text) {
-  stringr::str_split(string = text, 
-                     pattern = stringr::regex("(?<!\\w\\.\\w.)(?<![A-Z][a-z]\\.)(?<=\\.|\\?|\\!)\\s"))
+  strsplit(x = text, 
+           split = "(?<!\\w\\.\\w.)(?<![A-Z][a-z]\\.)(?<=\\.|\\?|\\!)\\s",
+           perl=TRUE)
 }
