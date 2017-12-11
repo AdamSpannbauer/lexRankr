@@ -58,7 +58,12 @@ tokenize <- function(text, removePunc=TRUE, removeNum=TRUE, toLower=TRUE, stemWo
     if(length(nonStopTok) == 0) NA_character_ else nonStopTok
   })
   if(stemWords) {
-    text <- lapply(text, SnowballC::wordStem)
+    text <- lapply(text, function(w) {
+      w_na = which(is.na(w))
+      out = SnowballC::wordStem(w)
+      out[w_na] = NA
+      out
+    })
   }
 
   tokenList <- lapply(text, function(tokens) {

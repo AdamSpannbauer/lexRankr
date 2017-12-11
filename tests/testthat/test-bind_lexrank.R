@@ -54,7 +54,7 @@ test_that("test input checking", {
   expect_error(bind_lexrank(df, sents, fake))
   expect_error(bind_lexrank(NULL, sents, doc_id))
   expect_error(bind_lexrank(df, sents, doc_id, level="fake"))
-  expect_warning(bind_lexrank(df, sents, doc_id, level=c("sentences","tokens")))
+  # expect_warning(bind_lexrank(df, sents, doc_id, level=c("sentences","tokens")))
   
   df <- data.frame(doc_id = c(1L, 1L, 1L, 1L, 1L, 1L, 1L, 2L, 2L, 2L, 2L, 2L, 2L, 3L, 3L, 3L, 3L, 3L, 3L), 
                    sent_id = c(1L, 1L, 1L, 2L, 2L, 2L, 2L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L), 
@@ -70,7 +70,7 @@ test_that("test input checking", {
   
   expect_error(bind_lexrank(df, tokens, doc_id, fake, level="tokens"))
   expect_error(bind_lexrank(df, tokens, doc_id, level="tokens"))
-  expect_warning(bind_lexrank(df, tokens, doc_id, sent_id, level=c("tokens","sentences")))
+  # expect_warning(bind_lexrank(df, tokens, doc_id, sent_id, level=c("tokens","sentences")))
 })
 
 # test output val ------------------------------------------------------
@@ -116,9 +116,7 @@ test_that("output value", {
                                           "Documents will be parsed and lexranked.", "Documents will be parsed and lexranked.", "Documents will be parsed and lexranked."),
                                 tokens = c("testing", "the", "system", "second", "sentence", "for", "you", "system", "testing", "the", 
                                            "tidy", "documents", "df", "documents", "will", "be", "parsed", "and", "lexranked"),
-                                lexrank = c(0.07143, 0.07143, 0.07143, 0.07143, NA, 0.07143, 0.07143, 0.07143, 
-                                            0.07143, 0.07143, NA, 0.07143, NA, 0.07143, 0.07143, 0.07143, 
-                                            NA, 0.07143, NA),
+                                lexrank = c(0.16667, NA, 0.16667, NA, NA, NA, NA, 0.16667, 0.16667, NA, NA, 0.16667, NA, 0.16667, NA, NA, NA, NA, NA),
                                 stringsAsFactors = FALSE)
   
   expect_equal(test_result, expected_result)

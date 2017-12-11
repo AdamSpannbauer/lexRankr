@@ -46,7 +46,7 @@ sentenceSimil <- function(sentenceId, token, docId=NULL, sentencesAsDocs=FALSE){
     dplyr::summarise(tf = n()) %>%
     dplyr::ungroup() %>%
     dplyr::group_by(token) %>%
-    dplyr::mutate(idf = 1+log(ndoc/n())) %>%
+    dplyr::mutate(idf = 1+log(ndoc/length(unique(docId)))) %>%
     dplyr::mutate(tfidf = tf*idf) %>%
     dplyr::ungroup()
 

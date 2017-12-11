@@ -31,7 +31,7 @@ test_that("All clean options TRUE", {
   expectedResultTokens <- lexRankr::tokenize(testDocs) %>% 
     unlist() %>% 
     .[which(!is.na(.))]
-
+  
   expect_equal(testResult$sentences, expectedResultSentences)
   expect_equal(testResult$tokens$token, expectedResultTokens)
   

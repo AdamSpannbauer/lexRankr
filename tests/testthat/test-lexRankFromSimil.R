@@ -49,8 +49,8 @@ test_that("object out value", {
                            token = tokenDf$token,
                            docId = tokenDf$docId)
   
-  testResult <- lexRankFromSimil(similDf$sent1, similDf$sent2, similDf$similVal) %>% 
-    dplyr::mutate(value = round(value, 5))
+  testResult <- lexRankFromSimil(similDf$sent1, similDf$sent2, similDf$similVal)
+  testResult$value = round(testResult$value, 5)
   
   expectedResult <- data.frame(sentenceId = c("1_1", "2_1", "3_1"),
                                value = c(0.25676, 0.48649, 0.25676),
@@ -58,8 +58,8 @@ test_that("object out value", {
   
   expect_identical(testResult, expectedResult)
   
-  testResult <- lexRankFromSimil(similDf$sent1, similDf$sent2, similDf$similVal, continuous = TRUE) %>% 
-    dplyr::mutate(value = round(value, 5))
+  testResult <- lexRankFromSimil(similDf$sent1, similDf$sent2, similDf$similVal, continuous = TRUE)
+  testResult$value = round(testResult$value, 5)
   
   expectedResult <- data.frame(sentenceId = c("1_1", "2_1", "3_1"),
                                value = c(0.25676, 0.48649, 0.25676),
@@ -67,8 +67,8 @@ test_that("object out value", {
   
   expect_identical(testResult, expectedResult)
   
-  testResult <- lexRankFromSimil(similDf$sent1, similDf$sent2, similDf$similVal, usePageRank = FALSE) %>% 
-    dplyr::mutate(value = round(value, 5))
+  testResult <- lexRankFromSimil(similDf$sent1, similDf$sent2, similDf$similVal, usePageRank = FALSE)
+  testResult$value = round(testResult$value, 5)
   
   expectedResult <- data.frame(sentenceId = c("2_1", "1_1", "3_1"),
                                value = c(2, 1, 1),

@@ -16,22 +16,29 @@ sentenceParse <- function(text, docId = "create") {
   if(length(text) < 1) stop("text must be at least length 1")
   docId <- as.character(docId)
   if(length(docId)==1 & docId[1]=="create") {
-      createDocIds <- TRUE
-    } else if(length(docId)==length(text)) {
-      createDocIds <- FALSE
-    } else if(length(docId)!=length(text)) stop("docId vector must be same length as text vector")
-
-
+    createDocIds <- TRUE
+  } else if(length(docId)==length(text)) {
+    createDocIds <- FALSE
+  } else if(length(docId)!=length(text)) stop("docId vector must be same length as text vector")
+  
+  
   sentences <- sentence_parser(text)
   sentenceDfList <- lapply(seq_along(sentences), function(i) {
     sentVec <- trimws(sentences[[i]])
     if(createDocIds) {
       data.frame(docId=i, sentenceId=paste0(i,"_",seq_along(sentVec)), sentence=sentVec, stringsAsFactors = FALSE)
     } else if(!createDocIds) {
-      data.frame(docId=docId[i], sentenceId=paste0(docId[i],"_",seq_along(sentVec)), sentence=sentVec, stringsAsFactors = FALSE)
+      data.frame(docId=docId[i], sentence=sentVec, stringsAsFactors = FALSE)
     }
   })
-  sentenceDf <- dplyr::bind_rows(sentenceDfList)
+  sentenceDf <- do.call('rbind', sentenceDfList)
+  sentenceDfList <- split(sentenceDf, sentenceDf$docId)
+  sentenceDfList <- lapply(sentenceDfList, function(dfi) {
+    dfi$sentenceId <- paste0(dfi$docId, "_", 1:nrow(dfi))
+    dfi[,c("docId","sentenceId","sentence")]
+  })
+  sentenceDf <- do.call('rbind', sentenceDfList)
   class(sentenceDf) <- "data.frame"
+  rownames(sentenceDf) <- NULL
   return(sentenceDf)
 }
