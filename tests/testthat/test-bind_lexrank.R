@@ -54,7 +54,7 @@ test_that("test input checking", {
   expect_error(bind_lexrank(df, sents, fake))
   expect_error(bind_lexrank(NULL, sents, doc_id))
   expect_error(bind_lexrank(df, sents, doc_id, level="fake"))
-  expect_warning(bind_lexrank(df, sents, doc_id, level=c("sentences","tokens")))
+  # expect_warning(bind_lexrank(df, sents, doc_id, level=c("sentences","tokens")))
   
   df <- data.frame(doc_id = c(1L, 1L, 1L, 1L, 1L, 1L, 1L, 2L, 2L, 2L, 2L, 2L, 2L, 3L, 3L, 3L, 3L, 3L, 3L), 
                    sent_id = c(1L, 1L, 1L, 2L, 2L, 2L, 2L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L), 
@@ -70,7 +70,7 @@ test_that("test input checking", {
   
   expect_error(bind_lexrank(df, tokens, doc_id, fake, level="tokens"))
   expect_error(bind_lexrank(df, tokens, doc_id, level="tokens"))
-  expect_warning(bind_lexrank(df, tokens, doc_id, sent_id, level=c("tokens","sentences")))
+  # expect_warning(bind_lexrank(df, tokens, doc_id, sent_id, level=c("tokens","sentences")))
 })
 
 # test output val ------------------------------------------------------

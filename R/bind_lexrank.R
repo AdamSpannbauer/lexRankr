@@ -49,7 +49,7 @@ bind_lexrank_ <- function(tbl, text, doc_id, sent_id=NULL, level=c("sentences", 
   if(!(doc_id %in% names(tbl))) stop("doc_id column not found in tbl")
   if(!is.character(level)) stop("level must be character")
   if(length(level) > 1) {
-    warning("only first element of level will be used")
+    # warning("only first element of level will be used")
     level = level[1]
   }
   if(!(level %in% c("sentences", "tokens"))) stop("invalid value of level; accepted values for level are 'sentences' and 'tokens'")

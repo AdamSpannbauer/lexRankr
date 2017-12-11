@@ -28,10 +28,17 @@ sentenceParse <- function(text, docId = "create") {
     if(createDocIds) {
       data.frame(docId=i, sentenceId=paste0(i,"_",seq_along(sentVec)), sentence=sentVec, stringsAsFactors = FALSE)
     } else if(!createDocIds) {
-      data.frame(docId=docId[i], sentenceId=paste0(docId[i],"_",seq_along(sentVec)), sentence=sentVec, stringsAsFactors = FALSE)
+      data.frame(docId=docId[i], sentence=sentVec, stringsAsFactors = FALSE)
     }
   })
   sentenceDf <- do.call('rbind', sentenceDfList)
+  sentenceDfList <- split(sentenceDf, sentenceDf$docId)
+  sentenceDfList <- lapply(sentenceDfList, function(dfi) {
+    dfi$sentenceId <- paste0(dfi$docId, "_", 1:nrow(dfi))
+    dfi[,c("docId","sentenceId","sentence")]
+  })
+  sentenceDf <- do.call('rbind', sentenceDfList)
   class(sentenceDf) <- "data.frame"
+  rownames(sentenceDf) <- NULL
   return(sentenceDf)
 }

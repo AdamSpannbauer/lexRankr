@@ -51,7 +51,7 @@ sentenceSimil <- function(sentenceId, token, docId=NULL, sentencesAsDocs=FALSE){
   stm = do.call('rbind', stmList)
   stmList = split(stm, stm$token)
   stmList = lapply(stmList, function(dfi) {
-    dfi[['idf']] = 1+log(ndoc/nrow(dfi))
+    dfi[['idf']] = 1+log(ndoc/length(unique(dfi$docId)))
     dfi[['tfidf']] = dfi$tf*dfi$idf
     unique(dfi)
   })
