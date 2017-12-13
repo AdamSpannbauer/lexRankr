@@ -1,9 +1,9 @@
 ## Test environments
 
-* local Windows 7 x64, R 3.3.2
-* win-builder (devel and release)
-* travis-ci (build passing for r release and devel)
+* win-builder (r devel and release)
+* travis-ci (build passing for r devel and release)
 * appveyor (build passing)
+* local macOS Sierra 10.12.6; R version 3.4.2
 
 ## R CMD check results
 
