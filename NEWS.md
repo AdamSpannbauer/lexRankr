@@ -1,4 +1,8 @@
 
+# lexRankr 0.5.1
+
+* changed `smart_stopwords` to be internal data so that package doesnt need to be explicitly loaded with `library` to be able to parse
+
 # lexRankr 0.5.0
 
 * bug fix in sentence parsing for parsing exclamatory sentences
