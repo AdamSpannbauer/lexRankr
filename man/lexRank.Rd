@@ -19,7 +19,7 @@ lexRank(text, docId = "create", threshold = 0.2, n = 3,
 
 \item{n}{The number of sentences to return as the extractive summary.  The function will return the top \code{n} lexRanked sentences.  See \code{returnTies} for handling ties in lexRank.}
 
-\item{returnTies}{\code{TRUE} or \code{FALSE} indicating whether or not to return greater than \code{n} sentence IDs if there is a tie in lexRank.  If \code{TRUE}, the returned number of sentences will not be limited to \code{n}, but rather will return every sentece with a top 3 score.  If \code{FALSE}, the returned number of sentences will be \code{<=n}. Defaults to \code{TRUE}.}
+\item{returnTies}{\code{TRUE} or \code{FALSE} indicating whether or not to return greater than \code{n} sentence IDs if there is a tie in lexRank.  If \code{TRUE}, the returned number of sentences will not be limited to \code{n}, but rather will return every sentence with a top 3 score.  If \code{FALSE}, the returned number of sentences will be \code{<=n}. Defaults to \code{TRUE}.}
 
 \item{usePageRank}{\code{TRUE} or \code{FALSE} indicating whether or not to use the page rank algorithm for ranking sentences.  If \code{FALSE}, a sentences unweighted centrality will be used as the rank.  Defaults to \code{TRUE}.}
 
@@ -29,7 +29,7 @@ lexRank(text, docId = "create", threshold = 0.2, n = 3,
 
 \item{sentencesAsDocs}{\code{TRUE} or \code{FALSE}, indicating whether or not to treat sentences as documents when calculating tfidf scores for similarity. If \code{TRUE}, inverse document frequency will be calculated as inverse sentence frequency (useful for single document extractive summarization).}
 
-\item{removePunc}{\code{TRUE} or \code{FALSE} indicating whether or not to remove punctuation from text while tokenizing.  If \code{TRUE}, puncuation will be removed.  Defaults to \code{TRUE}.}
+\item{removePunc}{\code{TRUE} or \code{FALSE} indicating whether or not to remove punctuation from text while tokenizing.  If \code{TRUE}, punctuation will be removed.  Defaults to \code{TRUE}.}
 
 \item{removeNum}{\code{TRUE} or \code{FALSE} indicating whether or not to remove numbers from text while tokenizing.  If \code{TRUE}, numbers will be removed.  Defaults to \code{TRUE}.}
 

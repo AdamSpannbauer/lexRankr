@@ -8,17 +8,17 @@ lexRankFromSimil(s1, s2, simil, threshold = 0.2, n = 3, returnTies = TRUE,
   usePageRank = TRUE, damping = 0.85, continuous = FALSE)
 }
 \arguments{
-\item{s1}{A character vector of sentence IDs corresponding to the \code{s2} and \code{simil} arguemants.}
+\item{s1}{A character vector of sentence IDs corresponding to the \code{s2} and \code{simil} arguments}
 
-\item{s2}{A character vector of sentence IDs corresponding to the \code{s1} and \code{simil} arguemants.}
+\item{s2}{A character vector of sentence IDs corresponding to the \code{s1} and \code{simil} arguments}
 
-\item{simil}{A numeric vector of similiarity values that represents the similiarity between the sentences represented by the IDs in \code{s1} and \code{s2}.}
+\item{simil}{A numeric vector of similarity values that represents the similarity between the sentences represented by the IDs in \code{s1} and \code{s2}.}
 
 \item{threshold}{The minimum simil value a sentence pair must have to be represented in the graph where lexRank is calculated.}
 
 \item{n}{The number of sentences to return as the extractive summary.  The function will return the top \code{n} lexRanked sentences.  See \code{returnTies} for handling ties in lexRank.}
 
-\item{returnTies}{\code{TRUE} or \code{FALSE} indicating whether or not to return greater than \code{n} sentence IDs if there is a tie in lexRank.  If \code{TRUE}, the returned number of sentences will not be limited to \code{n}, but rather will return every sentece with a top 3 score.  If \code{FALSE}, the returned number of sentences will be \code{<=n}. Defaults to \code{TRUE}.}
+\item{returnTies}{\code{TRUE} or \code{FALSE} indicating whether or not to return greater than \code{n} sentence IDs if there is a tie in lexRank.  If \code{TRUE}, the returned number of sentences will not be limited to \code{n}, but rather will return every sentence with a top 3 score.  If \code{FALSE}, the returned number of sentences will be \code{<=n}. Defaults to \code{TRUE}.}
 
 \item{usePageRank}{\code{TRUE} or \code{FALSE} indicating whether or not to use the page rank algorithm for ranking sentences.  If \code{FALSE}, a sentences unweighted centrality will be used as the rank.  Defaults to \code{TRUE}.}
 

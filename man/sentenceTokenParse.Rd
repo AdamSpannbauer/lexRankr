@@ -13,7 +13,7 @@ sentenceTokenParse(text, docId = "create", removePunc = TRUE,
 
 \item{docId}{A character vector of document Ids the same length as \code{text}.  If \code{docId=="create"} document Ids will be created.}
 
-\item{removePunc}{\code{TRUE} or \code{FALSE} indicating whether or not to remove punctuation from \code{text} while tokenizing.  If \code{TRUE}, puncuation will be removed.  Defaults to \code{TRUE}.}
+\item{removePunc}{\code{TRUE} or \code{FALSE} indicating whether or not to remove punctuation from \code{text} while tokenizing.  If \code{TRUE}, punctuation will be removed.  Defaults to \code{TRUE}.}
 
 \item{removeNum}{\code{TRUE} or \code{FALSE} indicating whether or not to remove numbers from \code{text} while tokenizing.  If \code{TRUE}, numbers will be removed.  Defaults to \code{TRUE}.}
 

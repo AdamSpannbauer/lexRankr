@@ -3,7 +3,7 @@
 #' @description Parse a character vector of documents into into both sentences and a clean vector of tokens.  The resulting output includes IDs for document and sentence for use in other \code{lexRank} functions.
 #' @param text A character vector of documents to be parsed into sentences and tokenized.
 #' @param docId A character vector of document Ids the same length as \code{text}.  If \code{docId=="create"} document Ids will be created.
-#' @param removePunc \code{TRUE} or \code{FALSE} indicating whether or not to remove punctuation from \code{text} while tokenizing.  If \code{TRUE}, puncuation will be removed.  Defaults to \code{TRUE}.
+#' @param removePunc \code{TRUE} or \code{FALSE} indicating whether or not to remove punctuation from \code{text} while tokenizing.  If \code{TRUE}, punctuation will be removed.  Defaults to \code{TRUE}.
 #' @param removeNum \code{TRUE} or \code{FALSE} indicating whether or not to remove numbers from \code{text} while tokenizing.  If \code{TRUE}, numbers will be removed.  Defaults to \code{TRUE}.
 #' @param toLower \code{TRUE} or \code{FALSE} indicating whether or not to coerce all of \code{text} to lowercase while tokenizing.  If \code{TRUE}, \code{text} will be coerced to lowercase.  Defaults to \code{TRUE}.
 #' @param stemWords \code{TRUE} or \code{FALSE} indicating whether or not to stem resulting tokens.  If \code{TRUE}, the outputted tokens will be tokenized using \code{SnowballC::wordStem()}.  Defaults to \code{TRUE}.

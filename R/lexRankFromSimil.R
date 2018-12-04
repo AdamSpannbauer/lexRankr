@@ -1,12 +1,12 @@
 #' Compute LexRanks from pairwise sentence similarities
 
 #' @description Compute LexRanks from sentence pair similarities using the page rank algorithm or degree centrality the methods used to compute lexRank are discussed in "LexRank: Graph-based Lexical Centrality as Salience in Text Summarization."
-#' @param s1 A character vector of sentence IDs corresponding to the \code{s2} and \code{simil} arguemants.
-#' @param s2 A character vector of sentence IDs corresponding to the \code{s1} and \code{simil} arguemants.
-#' @param simil A numeric vector of similiarity values that represents the similiarity between the sentences represented by the IDs in \code{s1} and \code{s2}.
+#' @param s1 A character vector of sentence IDs corresponding to the \code{s2} and \code{simil} arguments
+#' @param s2 A character vector of sentence IDs corresponding to the \code{s1} and \code{simil} arguments
+#' @param simil A numeric vector of similarity values that represents the similarity between the sentences represented by the IDs in \code{s1} and \code{s2}.
 #' @param threshold The minimum simil value a sentence pair must have to be represented in the graph where lexRank is calculated.
 #' @param n The number of sentences to return as the extractive summary.  The function will return the top \code{n} lexRanked sentences.  See \code{returnTies} for handling ties in lexRank.
-#' @param returnTies \code{TRUE} or \code{FALSE} indicating whether or not to return greater than \code{n} sentence IDs if there is a tie in lexRank.  If \code{TRUE}, the returned number of sentences will not be limited to \code{n}, but rather will return every sentece with a top 3 score.  If \code{FALSE}, the returned number of sentences will be \code{<=n}. Defaults to \code{TRUE}.
+#' @param returnTies \code{TRUE} or \code{FALSE} indicating whether or not to return greater than \code{n} sentence IDs if there is a tie in lexRank.  If \code{TRUE}, the returned number of sentences will not be limited to \code{n}, but rather will return every sentence with a top 3 score.  If \code{FALSE}, the returned number of sentences will be \code{<=n}. Defaults to \code{TRUE}.
 #' @param usePageRank \code{TRUE} or \code{FALSE} indicating whether or not to use the page rank algorithm for ranking sentences.  If \code{FALSE}, a sentences unweighted centrality will be used as the rank.  Defaults to \code{TRUE}.
 #' @param damping The damping factor to be passed to page rank algorithm.  Ignored if \code{usePageRank} is \code{FALSE}.
 #' @param continuous \code{TRUE} or \code{FALSE} indicating whether or not to use continuous LexRank.  Only applies if \code{usePageRank==TRUE}.  If \code{TRUE}, \code{threshold} will be ignored and lexRank will be computed using a weighted graph representation of the sentences. Defaults to \code{FALSE}.

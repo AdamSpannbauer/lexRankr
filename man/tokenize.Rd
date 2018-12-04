@@ -11,7 +11,7 @@ tokenize(text, removePunc = TRUE, removeNum = TRUE, toLower = TRUE,
 \arguments{
 \item{text}{The character vector to be tokenized}
 
-\item{removePunc}{\code{TRUE} or \code{FALSE} indicating whether or not to remove punctuation from \code{text}.  If \code{TRUE}, puncuation will be removed.  Defaults to \code{TRUE}.}
+\item{removePunc}{\code{TRUE} or \code{FALSE} indicating whether or not to remove punctuation from \code{text}.  If \code{TRUE}, punctuation will be removed.  Defaults to \code{TRUE}.}
 
 \item{removeNum}{\code{TRUE} or \code{FALSE} indicating whether or not to remove numbers from \code{text}.  If \code{TRUE}, numbers will be removed.  Defaults to \code{TRUE}.}
 

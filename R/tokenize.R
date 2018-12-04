@@ -3,7 +3,7 @@ utils::globalVariables(c("smart_stopwords"))
 
 #' Parse the elements of a character vector into a list of cleaned tokens.
 #' @param text The character vector to be tokenized
-#' @param removePunc \code{TRUE} or \code{FALSE} indicating whether or not to remove punctuation from \code{text}.  If \code{TRUE}, puncuation will be removed.  Defaults to \code{TRUE}.
+#' @param removePunc \code{TRUE} or \code{FALSE} indicating whether or not to remove punctuation from \code{text}.  If \code{TRUE}, punctuation will be removed.  Defaults to \code{TRUE}.
 #' @param removeNum \code{TRUE} or \code{FALSE} indicating whether or not to remove numbers from \code{text}.  If \code{TRUE}, numbers will be removed.  Defaults to \code{TRUE}.
 #' @param toLower \code{TRUE} or \code{FALSE} indicating whether or not to coerce all of \code{text} to lowercase.  If \code{TRUE}, \code{text} will be coerced to lowercase.  Defaults to \code{TRUE}.
 #' @param stemWords \code{TRUE} or \code{FALSE} indicating whether or not to stem resulting tokens.  If \code{TRUE}, the outputted tokens will be tokenized using \code{SnowballC::wordStem()}.  Defaults to \code{TRUE}.

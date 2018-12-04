@@ -7,11 +7,11 @@
 sentenceSimil(sentenceId, token, docId = NULL, sentencesAsDocs = FALSE)
 }
 \arguments{
-\item{sentenceId}{A character vector of sentence IDs corresponding to the \code{docId} and \code{token} arguemants.}
+\item{sentenceId}{A character vector of sentence IDs corresponding to the \code{docId} and \code{token} arguments}
 
-\item{token}{A character vector of tokens corresponding to the \code{docId} and \code{sentenceId} arguemants.}
+\item{token}{A character vector of tokens corresponding to the \code{docId} and \code{sentenceId} arguments}
 
-\item{docId}{A character vector of document IDs corresponding to the \code{sentenceId} and \code{token} arguemants.  Can be \code{NULL} if \code{sentencesAsDocs} is \code{TRUE}.}
+\item{docId}{A character vector of document IDs corresponding to the \code{sentenceId} and \code{token} arguments.  Can be \code{NULL} if \code{sentencesAsDocs} is \code{TRUE}.}
 
 \item{sentencesAsDocs}{\code{TRUE} or \code{FALSE}, indicating whether or not to treat sentences as documents when calculating tfidf scores. If \code{TRUE}, inverse document frequency will be calculated as inverse sentence frequency (useful for single document extractive summarization)}
 }
