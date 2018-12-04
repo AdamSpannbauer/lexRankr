@@ -1,4 +1,8 @@
 
+# lexRankr 0.5.2
+
+* fix damping bug where damping parameter wasn't passed to  `igraph::pagerank`
+
 # lexRankr 0.5.1
 
 * changed `smart_stopwords` to be internal data so that package doesnt need to be explicitly loaded with `library` to be able to parse
