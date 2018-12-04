@@ -51,7 +51,7 @@ lexRankFromSimil <- function(s1, s2, simil, threshold=.2, n=3, returnTies=TRUE, 
     if(length(damping) != 1) stop("damping must be length 1")
 
     sentGraph <- igraph::graph_from_data_frame(edges, directed = FALSE)
-    sentRank <- igraph::page_rank(sentGraph, directed=FALSE)$vector
+    sentRank <- igraph::page_rank(sentGraph, directed=FALSE, damping=damping)$vector
     sentRanksRanked <- rank(1/sentRank, ties.method = tieMethod)
     topCentral <- sentRank[which(sentRanksRanked <= n)]
     centralDf <- data.frame(sentenceId=names(topCentral), value=topCentral,stringsAsFactors = FALSE)
