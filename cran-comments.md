@@ -1,9 +1,10 @@
 ## Test environments
 
-* win-builder (r devel and release); 1 NOTE on r release for possibly misspelled words in DESCRIPTION.  Noted words are as intended and include names.
+* win-builder (r devel and release)
+   * 1 NOTE for '(possibly) invalid URLs' in vignette.  The NOTE has been reviewed and the related URL is of no issue to the vignette.
 * travis-ci (build passing for r devel and release)
 * appveyor (build passing)
-* local macOS Sierra 10.12.6; R version 3.4.2
+* local macOS Mojave 10.14; R version 3.4.4
 
 ## R CMD check results
 
