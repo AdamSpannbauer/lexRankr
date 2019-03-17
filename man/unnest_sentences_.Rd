@@ -5,11 +5,11 @@
 \alias{unnest_sentences}
 \title{Split a column of text into sentences}
 \usage{
-unnest_sentences_(tbl, output, input, doc_id = NULL, output_id = "sent_id",
-  drop = TRUE)
+unnest_sentences_(tbl, output, input, doc_id = NULL,
+  output_id = "sent_id", drop = TRUE)
 
-unnest_sentences(tbl, output, input, doc_id = NULL, output_id = "sent_id",
-  drop = TRUE)
+unnest_sentences(tbl, output, input, doc_id = NULL,
+  output_id = "sent_id", drop = TRUE)
 }
 \arguments{
 \item{tbl}{dataframe containing column of text to be split into sentences}

@@ -9,9 +9,10 @@ License: MIT + file LICENSE
 URL: https://github.com/AdamSpannbauer/lexRankr/
 BugReports: https://github.com/AdamSpannbauer/lexRankr/issues/
 LazyData: TRUE
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 Imports: SnowballC, igraph, Rcpp
 Depends: R (>= 2.10)
 LinkingTo: Rcpp
 Suggests: covr, testthat, R.rsp
 VignetteBuilder: R.rsp
+Encoding: UTF-8

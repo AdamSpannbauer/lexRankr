@@ -4,8 +4,9 @@
 \alias{lexRankFromSimil}
 \title{Compute LexRanks from pairwise sentence similarities}
 \usage{
-lexRankFromSimil(s1, s2, simil, threshold = 0.2, n = 3, returnTies = TRUE,
-  usePageRank = TRUE, damping = 0.85, continuous = FALSE)
+lexRankFromSimil(s1, s2, simil, threshold = 0.2, n = 3,
+  returnTies = TRUE, usePageRank = TRUE, damping = 0.85,
+  continuous = FALSE)
 }
 \arguments{
 \item{s1}{A character vector of sentence IDs corresponding to the \code{s2} and \code{simil} arguments}
