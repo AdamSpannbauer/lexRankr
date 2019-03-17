@@ -135,7 +135,7 @@ sig  &lt;-<span class="st"> </span>httr::<span class="kw">sign_oauth1.0</span>(a
   }
   <span class="kw">return</span>(timeline_df)
 }</code></pre></div>
-<p>We can now use our function to gather a user’s tweets with the additional information of date-time, favorites, retweets. Lets use one of the most famous twitter accounts as of late: <span class="citation">[@realDonaldTrump]</span>(<a href="https://twitter.com/realDonaldTrump" class="uri">https://twitter.com/realDonaldTrump</a>).</p>
+<p>We can now use our function to gather a user’s tweets with the additional information of date-time, favorites, retweets. Lets use one of the most famous twitter accounts as of late: <a href="https://twitter.com/realDonaldTrump" class="uri">@realDonaldTrump</a>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tweets_df &lt;-<span class="st"> </span><span class="kw">get_timeline_df</span>(<span class="st">&quot;realDonaldTrump&quot;</span>, <span class="dv">600</span>, sig) %&gt;%<span class="st"> </span>
 <span class="st">    </span><span class="kw">mutate</span>(<span class="dt">text =</span> <span class="kw">str_replace_all</span>(text, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="st">&quot; &quot;</span>)) <span class="co">#clean out newlines for display</span>
 
@@ -240,7 +240,7 @@ tweets_df %&gt;%<span class="st"> </span>
 <td align="right">0.0085708</td>
 </tr>
 <tr class="even">
-<td align="left">Last day to get anything from our Valentine’s Collection by Valentine’s Day! Shop: <a href="https://t.co/MXljGLH3qY" class="uri">https://t.co/MXljGLH3qY</a> <a href="https://t.co/qFBCMytKMB" class="uri">https://t.co/qFBCMytKMB</a></td>
+<td align="left">Last day to get anything from our Valentine’s Collection by Valentine’s Day!</td>
 <td align="right">0.0077583</td>
 </tr>
 <tr class="odd">
@@ -249,7 +249,7 @@ tweets_df %&gt;%<span class="st"> </span>
 </tr>
 </tbody>
 </table>
-<p></br></br></p>
+<p><br/><br/></p>
 </div>
 
 
